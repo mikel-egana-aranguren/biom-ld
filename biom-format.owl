@@ -1,0 +1,353 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY terms "http://purl.org/dc/terms/" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY ontology "http://www.biom-format.org/ontology/" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.biom-format.org/ontology/"
+     xml:base="http://www.biom-format.org/ontology/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:ontology="http://www.biom-format.org/ontology/">
+    <owl:Ontology rdf:about="http://www.biom-format.org/ontology/">
+        <terms:license rdf:datatype="&xsd;anyURI">http://creativecommons.org/licenses/by/3.0/</terms:license>
+        <ToDo xml:lang="en">Alphanumerical IDs</ToDo>
+        <terms:creator>Mikel Egaña Aranguren</terms:creator>
+        <rdfs:comment xml:lang="en">Direct translation of http://biom-format.org/documentation/format_versions/biom-1.0.html</rdfs:comment>
+        <ToDo xml:lang="en">Map to SIO</ToDo>
+        <ToDo xml:lang="en">Use Data Cube vocabulary for tables</ToDo>
+        <owl:versionIRI rdf:resource="http://www.biom-format.org/www.biom-format.org/ontology/1.0.0"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/terms/creator -->
+
+    <owl:AnnotationProperty rdf:about="&terms;creator"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/license -->
+
+    <owl:AnnotationProperty rdf:about="&terms;license"/>
+    
+
+
+    <!-- http://www.biom-format.org/ontology/ToDo -->
+
+    <owl:AnnotationProperty rdf:about="&ontology;ToDo"/>
+    
+
+
+    <!-- http://www.biom-format.org/ontology/biom-format-original-description -->
+
+    <owl:AnnotationProperty rdf:about="&ontology;biom-format-original-description">
+        <rdfs:comment xml:lang="en">Thr original description found at http://biom-format.org/documentation/format_versions/biom-1.0.html</rdfs:comment>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#date -->
+
+    <rdfs:Datatype rdf:about="&xsd;date"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.biom-format.org/ontology/date -->
+
+    <owl:DatatypeProperty rdf:about="&ontology;date">
+        <biom-format-original-description xml:lang="en">&lt;datetime&gt; Date the table was built (ISO 8601 format)</biom-format-original-description>
+        <rdfs:domain rdf:resource="&ontology;Table"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.biom-format.org/ontology/format -->
+
+    <owl:DatatypeProperty rdf:about="&ontology;format">
+        <biom-format-original-description xml:lang="en">&lt;string&gt; The name and version of the current biom format</biom-format-original-description>
+        <rdfs:domain rdf:resource="&ontology;Table"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.biom-format.org/ontology/format_url -->
+
+    <owl:DatatypeProperty rdf:about="&ontology;format_url">
+        <biom-format-original-description>&lt;url&gt; A string with a static URL providing format details</biom-format-original-description>
+        <rdfs:comment xml:lang="en">This should point to this ontology</rdfs:comment>
+        <rdfs:domain rdf:resource="&ontology;Table"/>
+        <rdfs:range rdf:resource="&xsd;anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.biom-format.org/ontology/generated_by -->
+
+    <owl:DatatypeProperty rdf:about="&ontology;generated_by">
+        <biom-format-original-description xml:lang="en">&lt;string&gt; Package and revision that built the table</biom-format-original-description>
+        <rdfs:domain rdf:resource="&ontology;Table"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.biom-format.org/ontology/has_value -->
+
+    <owl:DatatypeProperty rdf:about="&ontology;has_value">
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&xsd;float"/>
+                    <rdf:Description rdf:about="&xsd;int"/>
+                    <rdf:Description rdf:about="&xsd;string"/>
+                </owl:unionOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.biom-format.org/ontology/id -->
+
+    <owl:DatatypeProperty rdf:about="&ontology;id">
+        <biom-format-original-description xml:lang="en">&lt;string or null&gt; a field that can be used to id a table (or null)</biom-format-original-description>
+        <rdfs:comment xml:lang="en">This has been added for the sake of completeness, since the id in BIOM-LD should be the (HTTP resolvable) URI of the biom table instance, i.e. the &quot;@id&quot; property in JSON-LD</rdfs:comment>
+        <rdfs:domain rdf:resource="&ontology;Table"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&xsd;anyURI"/>
+                    <rdf:Description rdf:about="&xsd;string"/>
+                </owl:unionOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.biom-format.org/ontology/matrix_element_type -->
+
+    <owl:DatatypeProperty rdf:about="&ontology;matrix_element_type">
+        <biom-format-original-description xml:lang="en">matrix_element_type : Value type in matrix (a controlled vocabulary)
+                      Acceptable values:
+                       &quot;int&quot; : integer
+                       &quot;float&quot; : floating point
+                       &quot;unicode&quot; : unicode string</biom-format-original-description>
+        <rdfs:domain rdf:resource="&ontology;Table"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:onDatatype rdf:resource="&xsd;string"/>
+                <owl:withRestrictions rdf:parseType="Collection">
+                    <rdf:Description>
+                        <xsd:pattern>int|float|unicode</xsd:pattern>
+                    </rdf:Description>
+                </owl:withRestrictions>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.biom-format.org/ontology/matrix_type -->
+
+    <owl:DatatypeProperty rdf:about="&ontology;matrix_type">
+        <biom-format-original-description xml:lang="en">&lt;string&gt; Type of matrix data representation (a controlled vocabulary)
+                      Acceptable values:
+                       &quot;sparse&quot; : only non-zero values are specified
+                       &quot;dense&quot; : every element must be specified</biom-format-original-description>
+        <rdfs:domain rdf:resource="&ontology;Table"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:onDatatype rdf:resource="&xsd;string"/>
+                <owl:withRestrictions rdf:parseType="Collection">
+                    <rdf:Description>
+                        <xsd:pattern>sparse|dense</xsd:pattern>
+                    </rdf:Description>
+                </owl:withRestrictions>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.biom-format.org/ontology/FunctionTable -->
+
+    <owl:Class rdf:about="&ontology;FunctionTable">
+        <rdfs:subClassOf rdf:resource="&ontology;Table"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biom-format.org/ontology/GeneTable -->
+
+    <owl:Class rdf:about="&ontology;GeneTable">
+        <rdfs:subClassOf rdf:resource="&ontology;Table"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biom-format.org/ontology/MetaboliteTable -->
+
+    <owl:Class rdf:about="&ontology;MetaboliteTable">
+        <rdfs:subClassOf rdf:resource="&ontology;Table"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biom-format.org/ontology/OTUTable -->
+
+    <owl:Class rdf:about="&ontology;OTUTable">
+        <rdfs:subClassOf rdf:resource="&ontology;Table"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biom-format.org/ontology/OrthologTable -->
+
+    <owl:Class rdf:about="&ontology;OrthologTable">
+        <rdfs:subClassOf rdf:resource="&ontology;Table"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biom-format.org/ontology/PathwayTable -->
+
+    <owl:Class rdf:about="&ontology;PathwayTable">
+        <rdfs:subClassOf rdf:resource="&ontology;Table"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biom-format.org/ontology/Table -->
+
+    <owl:Class rdf:about="&ontology;Table">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&ontology;FunctionTable"/>
+                    <rdf:Description rdf:about="&ontology;GeneTable"/>
+                    <rdf:Description rdf:about="&ontology;MetaboliteTable"/>
+                    <rdf:Description rdf:about="&ontology;OTUTable"/>
+                    <rdf:Description rdf:about="&ontology;OrthologTable"/>
+                    <rdf:Description rdf:about="&ontology;PathwayTable"/>
+                    <rdf:Description rdf:about="&ontology;TaxonTable"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:comment xml:lang="en">The BIOM table is a member of one of these classses</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biom-format.org/ontology/TaxonTable -->
+
+    <owl:Class rdf:about="&ontology;TaxonTable">
+        <rdfs:subClassOf rdf:resource="&ontology;Table"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.genomic-resources.eu/metagenomics/txakoli_01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.genomic-resources.eu/metagenomics/txakoli_01">
+        <rdf:type rdf:resource="&ontology;OTUTable"/>
+        <rdfs:comment xml:lang="en">Example of how to generate a table, starting from min_dense_otu_table.biom</rdfs:comment>
+        <matrix_type>dense</matrix_type>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&ontology;FunctionTable"/>
+            <rdf:Description rdf:about="&ontology;GeneTable"/>
+            <rdf:Description rdf:about="&ontology;MetaboliteTable"/>
+            <rdf:Description rdf:about="&ontology;OTUTable"/>
+            <rdf:Description rdf:about="&ontology;OrthologTable"/>
+            <rdf:Description rdf:about="&ontology;PathwayTable"/>
+            <rdf:Description rdf:about="&ontology;TaxonTable"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+
