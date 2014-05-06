@@ -1,0 +1,46 @@
+{
+	"@context": {
+		"biom": "http://www.biom-format.org/ontology/",
+		"xsd": "http://www.w3.org/2001/XMLSchema#",
+		"row":
+		{
+		  "@id": "http://www.genomic-resources.eu/metagenomics/txakoli_01_row",
+		  "@type": "@id"
+		}
+	},
+	"@graph":[
+	      {
+	      "@id":"http://www.genomic-resources.eu/metagenomics/txakoli_01_table",
+	      "@type": "biom:OTUTable",
+	      "biom:format": "Biological Observation Matrix 1.0.0-dev",
+	      "biom:format_url": "http://www.biom-format.org/ontology/",
+	      "biom:generated_by": "QIIME revision XYZ",
+	      "biom:date":
+	      {
+		"@value": "2011-12-19T19:00:00",
+		"@type": "xsd:dateTime"
+	      },
+	      "biom:matrix_type": "dense",
+	      "biom:matrix_element_type": "int" ,
+	      "row":"http://www.genomic-resources.eu/metagenomics/txakoli_01_GG_OTU_01"},
+      {
+      "@id": "http://www.genomic-resources.eu/metagenomics/txakoli_01_GG_OTU_01",
+      "@graph":[
+      {
+	"@id": "http://www.genomic-resources.eu/metagenomics/txakoli_01_Sample1",
+	"biom:has_value": "0"
+      },
+      {
+	"@id": "http://www.genomic-resources.eu/metagenomics/txakoli_01_Sample2",
+	"biom:has_value": "0"
+      },
+      {
+	"@id": "http://www.genomic-resources.eu/metagenomics/txakoli_01_Sample3",
+	"biom:has_value": "1"
+      }
+      ]}
+  ]
+}
+
+
+
