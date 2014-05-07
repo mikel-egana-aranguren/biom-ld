@@ -1,0 +1,11 @@
+<http://www.genomic-resources.eu/metagenomics/txakoli_01_Sample1> <http://www.biom-format.org/ontology/has_value> "0" <http://www.genomic-resources.eu/metagenomics/txakoli_01_GG_OTU_01> .
+<http://www.genomic-resources.eu/metagenomics/txakoli_01_Sample2> <http://www.biom-format.org/ontology/has_value> "0" <http://www.genomic-resources.eu/metagenomics/txakoli_01_GG_OTU_01> .
+<http://www.genomic-resources.eu/metagenomics/txakoli_01_Sample3> <http://www.biom-format.org/ontology/has_value> "1" <http://www.genomic-resources.eu/metagenomics/txakoli_01_GG_OTU_01> .
+<http://www.genomic-resources.eu/metagenomics/txakoli_01_table> <http://www.biom-format.org/ontology/date> "2011-12-19T19:00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://www.genomic-resources.eu/metagenomics/txakoli_01_table> <http://www.biom-format.org/ontology/format> "Biological Observation Matrix 1.0.0-dev" .
+<http://www.genomic-resources.eu/metagenomics/txakoli_01_table> <http://www.biom-format.org/ontology/format_url> "http://www.biom-format.org/ontology/" .
+<http://www.genomic-resources.eu/metagenomics/txakoli_01_table> <http://www.biom-format.org/ontology/generated_by> "QIIME revision XYZ" .
+<http://www.genomic-resources.eu/metagenomics/txakoli_01_table> <http://www.biom-format.org/ontology/matrix_element_type> "int" .
+<http://www.genomic-resources.eu/metagenomics/txakoli_01_table> <http://www.biom-format.org/ontology/matrix_type> "dense" .
+<http://www.genomic-resources.eu/metagenomics/txakoli_01_table> <http://www.genomic-resources.eu/metagenomics/txakoli_01_row> <http://www.genomic-resources.eu/metagenomics/txakoli_01_GG_OTU_01> .
+<http://www.genomic-resources.eu/metagenomics/txakoli_01_table> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.biom-format.org/ontology/OTUTable> .
