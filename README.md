@@ -14,8 +14,8 @@ The [Biological Observation Matrix (BIOM) format](http://biom-format.org/) is a 
 Moving to a Linked Data representation (Not necessarily based in JSON-LD, see bellow) over a pure JSON format has the following advantages, specially from the publication/interoperability point of view (but not from the efficient storage point of view):
 
 * Publishing our data in Linked Data means that other datasets can be linked to ours (i.e. our dataset becomes more "discoverable" over the web) or we can link our dataset to other datasets and integrate information easily. 
-* Since we are using RDF, it is easy to merge our datasets with other datasets. This is specially interesting if common vocabularies like EnvO or NCBI taxonomy are used to represent row and column metadata.
-* Since the BIOM specification is represented as an ontology (See biom-format.owl), the specification, rather than being pure text, becomes computationally explicit: programs that consume BIOM data can be more easily written, reasoning can be used to check validity, specific validators (e.g. for metadata, value ranges, ... ) can be more easily written, and in general any programmatic endeavour becomes easier.
+* Since we are using [RDF](http://www.w3.org/standards/techs/rdf#w3c_all), it is easy to merge our datasets with other datasets. This is specially interesting if common vocabularies like EnvO or NCBI taxonomy are used to represent row and column metadata, and/or [SPARQL federated queries](http://www.w3.org/TR/sparql11-federated-query/) are used.
+* Since the BIOM specification is represented as an [OWL](http://www.w3.org/standards/techs/owl#w3c_all) ontology, the specification, rather than being pure text, becomes computationally explicit: programs that consume BIOM data can be more easily written, reasoning can be used to check validity, specific validators (e.g. for metadata, value ranges, ... ) can be more easily written, and in general any programmatic endeavour becomes easier.
 
 The mapping
 -----------
