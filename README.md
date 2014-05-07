@@ -4,7 +4,7 @@ BIOM-LD
 Summary
 -------
 
-This is a first hacky attempt towards a full mapping of the BIOM format to a more Linked Data friendly format, JSON-LD. 
+This is a first hacky attempt towards a full mapping of the BIOM format to a more Linked Data friendly JSON-LD format, and beyond. 
 
 Rationale
 ---------
