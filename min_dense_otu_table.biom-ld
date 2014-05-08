@@ -2,9 +2,8 @@
 	"@context": {
 		"biom": "http://www.biom-format.org/ontology/",
 		"xsd": "http://www.w3.org/2001/XMLSchema#",
-		"row":
+		"biom:row":
 		{
-		  "@id": "http://www.genomic-resources.eu/metagenomics/txakoli_01_row",
 		  "@type": "@id"
 		}
 	},
@@ -22,7 +21,7 @@
 	      },
 	      "biom:matrix_type": "dense",
 	      "biom:matrix_element_type": "int" ,
-	      "row":"http://www.genomic-resources.eu/metagenomics/txakoli_01_GG_OTU_01"},
+          "biom:row":"http://www.genomic-resources.eu/metagenomics/txakoli_01_GG_OTU_01"},
       {
       "@id": "http://www.genomic-resources.eu/metagenomics/txakoli_01_GG_OTU_01",
       "@graph":[

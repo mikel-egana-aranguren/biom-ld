@@ -7,5 +7,5 @@
 <http://www.genomic-resources.eu/metagenomics/txakoli_01_table> <http://www.biom-format.org/ontology/generated_by> "QIIME revision XYZ" .
 <http://www.genomic-resources.eu/metagenomics/txakoli_01_table> <http://www.biom-format.org/ontology/matrix_element_type> "int" .
 <http://www.genomic-resources.eu/metagenomics/txakoli_01_table> <http://www.biom-format.org/ontology/matrix_type> "dense" .
-<http://www.genomic-resources.eu/metagenomics/txakoli_01_table> <http://www.genomic-resources.eu/metagenomics/txakoli_01_row> <http://www.genomic-resources.eu/metagenomics/txakoli_01_GG_OTU_01> .
+<http://www.genomic-resources.eu/metagenomics/txakoli_01_table> <http://www.biom-format.org/ontology/row> <http://www.genomic-resources.eu/metagenomics/txakoli_01_GG_OTU_01> .
 <http://www.genomic-resources.eu/metagenomics/txakoli_01_table> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.biom-format.org/ontology/OTUTable> .
