@@ -17,8 +17,9 @@
  */
 package eu.genomic.resources.biom2ld;
 
-import eu.genomic.resources.biom2ld.HDF5.HDF5DatasetParser;
-import eu.genomic.resources.biom2ld.HDF5.HDF5ElementParser;
+import eu.genomic.resources.biom2ld.HDF5.HDF5BIOMObservationMatrixDataDatasetParser;
+import eu.genomic.resources.biom2ld.HDF5.HDF5HObjectParser;
+import eu.genomic.resources.biom2ld.HDF5.HDF5File;
 
 /**
  * @author Mikel Egaña Aranguren
@@ -29,12 +30,16 @@ public class Application {
 
 	/**
 	 * @param args
+	 * @throws Exception ds_par
 	 */
-	public static void main(String[] args) {
-//		HDF5ElementParser parent = new HDF5ElementParser("parent parser path");
-//		System.out.println(parent.targetPath);
+	public static void main(String[] args) throws Exception {
+		HDF5File file = new HDF5File("/home/mikel/UPV-EHU/Eclipse_Workspace/"
+				+ "biom-ld/data/rich_sparse_otu_table_hdf5.biom");
 		
-		HDF5DatasetParser son = new HDF5DatasetParser("son path");
-		System.out.println(son.targetPath);
+		// Create array of HDF5HObject parsers, with the path
+		HDF5BIOMObservationMatrixDataDatasetParser ds_parser = new HDF5BIOMObservationMatrixDataDatasetParser();
+		
+		ds_parser.execute(file.getObject(ds_parser.getHObjectPath()));
+		
 	}
 }

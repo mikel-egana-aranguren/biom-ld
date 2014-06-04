@@ -17,25 +17,41 @@
  */
 package eu.genomic.resources.biom2ld.HDF5;
 
+import ncsa.hdf.object.Dataset;
+import ncsa.hdf.object.HObject;
+
 /**
+ * 
+ * A parser for the dataset observation/matrix/data
+ * 
  * @author Mikel Egaña Aranguren
  * @version
  * @date 
  */
-public class HDF5DatasetParser extends HDF5ElementParser {
+public class HDF5BIOMObservationMatrixDataDatasetParser extends HDF5HObjectParser {
 
 	/**
 	 * @param path
 	 */
-	public HDF5DatasetParser(String path) {
-		super(path);
+	public HDF5BIOMObservationMatrixDataDatasetParser() {
+		super("observation/matrix/data");
 	}
 
 	/* (non-Javadoc)
 	 * @see eu.genomic.resources.biom2ld.HDF5.HDF5ElementParser#execute()
 	 */
 	@Override
-	public void execute() {
+	public void execute(HObject hobject) {
+		Dataset dataset = (Dataset) hobject;
+		try {
+			System.out.println((dataset.getData()));
+			double [] data = (double[]) dataset.getData();
+			for (int k = 0; k < data.length; k++) {
+				System.out.println(data[k]);
+			}
+		} catch (OutOfMemoryError | Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

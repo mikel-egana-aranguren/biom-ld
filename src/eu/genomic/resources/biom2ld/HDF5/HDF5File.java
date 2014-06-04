@@ -20,6 +20,7 @@ package eu.genomic.resources.biom2ld.HDF5;
 import ncsa.hdf.hdf5lib.HDF5Constants;
 import ncsa.hdf.object.h5.H5File;
 import ncsa.hdf.object.Dataset;
+import ncsa.hdf.object.HObject;
 
 /**
  * 
@@ -69,7 +70,10 @@ public class HDF5File {
 	 * @return
 	 * @throws Exception
 	 */
-	public Dataset getDataset (String datasetPath) throws Exception {
-		return (Dataset) h5file.get(datasetPath);
+//	public Dataset getDataset (String datasetPath) throws Exception {
+//		return (Dataset) h5file.get(datasetPath);
+//	}
+	public HObject getObject (String objectPath) throws Exception {
+		return h5file.get(objectPath);
 	}
 }

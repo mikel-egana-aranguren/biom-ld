@@ -17,23 +17,23 @@
  */
 package eu.genomic.resources.biom2ld.HDF5;
 
+import ncsa.hdf.object.HObject;
+
 /**
  * @author Mikel Egaña Aranguren
  * @version
  * @date 
  */
-public abstract class HDF5ElementParser{
-	public String targetPath;
+public abstract class HDF5HObjectParser{
+	private String targetPath;
 	
-	public HDF5ElementParser(String path){
+	public HDF5HObjectParser(String path){
 		targetPath = path;
 	}
 	
-	public String getTargetHDF5Path (){
+	public String getHObjectPath (){
 		return targetPath;
 	}
 
-	public abstract void execute();
-	
-//	public void execute ();
+	public abstract void execute(HObject hobject);
 }
