@@ -40,7 +40,7 @@ public class TestHDF5getDataset {
 		
 		try {
 			hdf5file.openFile();
-			dataset = (Dataset) hdf5file.getDataset("observation/matrix/data");	
+			dataset = (Dataset) hdf5file.getObject("observation/matrix/data");	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

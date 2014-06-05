@@ -25,7 +25,7 @@ import ncsa.hdf.object.HObject;
  * A parser for the dataset observation/matrix/data
  * 
  * @author Mikel Egaña Aranguren
- * @version
+ * @version 0.0.1
  * @date 
  */
 public class HDF5BIOMObservationMatrixDataDatasetParser extends HDF5HObjectParser {
@@ -41,17 +41,14 @@ public class HDF5BIOMObservationMatrixDataDatasetParser extends HDF5HObjectParse
 	 * @see eu.genomic.resources.biom2ld.HDF5.HDF5ElementParser#execute()
 	 */
 	@Override
-	public void execute(HObject hobject) {
+	public void execute(HObject hobject) throws Exception {
 		Dataset dataset = (Dataset) hobject;
-		try {
-			System.out.println((dataset.getData()));
+
 			double [] data = (double[]) dataset.getData();
 			for (int k = 0; k < data.length; k++) {
 				System.out.println(data[k]);
 			}
-		} catch (OutOfMemoryError | Exception e) {
-			e.printStackTrace();
-		}
+
 	}
 
 }

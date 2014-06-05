@@ -35,5 +35,5 @@ public abstract class HDF5HObjectParser{
 		return targetPath;
 	}
 
-	public abstract void execute(HObject hobject);
+	public abstract void execute(HObject hobject) throws Exception;
 }

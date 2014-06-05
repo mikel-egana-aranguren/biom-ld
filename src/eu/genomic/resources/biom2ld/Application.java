@@ -33,13 +33,8 @@ public class Application {
 	 * @throws Exception ds_par
 	 */
 	public static void main(String[] args) throws Exception {
-		HDF5File file = new HDF5File("/home/mikel/UPV-EHU/Eclipse_Workspace/"
-				+ "biom-ld/data/rich_sparse_otu_table_hdf5.biom");
-		
-		// Create array of HDF5HObject parsers, with the path
-		HDF5BIOMObservationMatrixDataDatasetParser ds_parser = new HDF5BIOMObservationMatrixDataDatasetParser();
-		
-		ds_parser.execute(file.getObject(ds_parser.getHObjectPath()));
-		
+		Engine engine = new Engine ("/home/mikel/UPV-EHU/Eclipse_Workspace/"
+				+ "biom-ld/data/rich_sparse_otu_table_hdf5.biom", "");
+		engine.work();
 	}
 }
