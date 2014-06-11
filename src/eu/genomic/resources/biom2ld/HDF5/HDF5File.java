@@ -64,9 +64,9 @@ public class HDF5File {
 	
 	/**
 	 * 
-	 * Get a dataset from the HDF5 object
+	 * Get an object from the HDF5 object
 	 * 
-	 * @param datasetPath
+	 * @param objectPath the object path in the HDF5 file
 	 * @return
 	 * @throws Exception
 	 */

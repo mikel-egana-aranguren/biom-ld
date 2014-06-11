@@ -17,14 +17,12 @@
  */
 package eu.genomic.resources.biom2ld.HDF5;
 
-import ncsa.hdf.object.HObject;
-
 /**
  * @author Mikel Egaña Aranguren
  * @version
  * @date 
  */
-public abstract class HDF5HObjectParser{
+public class HDF5HObjectParser{
 	private String targetPath;
 	
 	public HDF5HObjectParser(String path){
@@ -34,6 +32,7 @@ public abstract class HDF5HObjectParser{
 	public String getHObjectPath (){
 		return targetPath;
 	}
-
-	public abstract void execute(HObject hobject) throws Exception;
+	
+	// Store object = pass it like the cache
+	// "DB" access (Prefered) = add triple store interface with constructor, add methods "addItem (s,p,o); addIteam(key,value)"
 }
