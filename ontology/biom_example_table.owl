@@ -43,6 +43,7 @@ Most of the HDF5 groups and datasets are not mapped, since are not necessary: on
 The metadata mapping is dependant on each table, since any JSON object can be defined. The metadata should, in any case, refer to the observation and sample instances (see &quot;is about&quot; property).</rdfs:comment>
         <owl:imports rdf:resource="http://semanticscience.org/ontology/sio.owl"/>
         <owl:versionIRI rdf:resource="http://www.biom-format.org/ontology/biom-v0.0.1.owl"/>
+        <owl:imports rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
     </owl:Ontology>
     
 
@@ -304,14 +305,8 @@ Since metadata associated with Samples and Observations is the most interesting 
         </owl:equivalentClass>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&resource;BIOM_000019"/>
-                <owl:someValuesFrom rdf:resource="&xsd;nonNegativeInteger"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&resource;BIOM_000020"/>
-                <owl:someValuesFrom rdf:resource="&xsd;nonNegativeInteger"/>
+                <owl:onProperty rdf:resource="&resource;BIOM_000017"/>
+                <owl:someValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -328,8 +323,14 @@ Since metadata associated with Samples and Observations is the most interesting 
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&resource;BIOM_000017"/>
-                <owl:someValuesFrom rdf:resource="&xsd;string"/>
+                <owl:onProperty rdf:resource="&resource;BIOM_000020"/>
+                <owl:someValuesFrom rdf:resource="&xsd;nonNegativeInteger"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&resource;BIOM_000019"/>
+                <owl:someValuesFrom rdf:resource="&xsd;nonNegativeInteger"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment xml:lang="en">A BIOM table is an instance of any of the subclasses of this class. A BIOM table instance maps to an HDF5 file</rdfs:comment>
@@ -489,6 +490,278 @@ For example, the JSON metadata entities &quot;Description&quot;: &quot;Human gut
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://dbpedia.org/resource/Human_gastrointestinal_tract -->
+
+    <owl:NamedIndividual rdf:about="http://dbpedia.org/resource/Human_gastrointestinal_tract">
+        <rdf:type rdf:resource="&resource;BIOM_000056"/>
+        <resource:BIOM_000058 xml:lang="en">human gut</resource:BIOM_000058>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.biom-format.org/resource/BIOM_000028 -->
+
+    <owl:NamedIndividual rdf:about="&resource;BIOM_000028">
+        <rdf:type rdf:resource="&resource;BIOM_000009"/>
+        <rdfs:label xml:lang="en">Example table</rdfs:label>
+        <resource:BIOM_000018 rdf:datatype="&xsd;nonNegativeInteger">15</resource:BIOM_000018>
+        <resource:BIOM_000016 rdf:datatype="&xsd;dateTime">2014-06-10T19:57:00</resource:BIOM_000016>
+        <resource:BIOM_000019 rdf:datatype="&xsd;nonNegativeInteger">5</resource:BIOM_000019>
+        <resource:BIOM_000020 rdf:datatype="&xsd;nonNegativeInteger">6</resource:BIOM_000020>
+        <resource:BIOM_000017 rdf:datatype="&xsd;string">Manually, by Mikel Egaña Aranguren</resource:BIOM_000017>
+        <rdfs:comment xml:lang="en">Obtain all the values of a row: 
+
+PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+PREFIX owl: &lt;http://www.w3.org/2002/07/owl#&gt;
+PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX biom_res: &lt;http://www.biom-format.org/resource/&gt;
+SELECT *
+WHERE { 
+?cell biom_res:BIOM_000025 biom_res:BIOM_000036 .
+?cell biom_res:BIOM_000027 ?value  
+}</rdfs:comment>
+        <rdfs:comment xml:lang="en">Retrieve value GG_OTU_2 Sample2: 
+
+PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+PREFIX owl: &lt;http://www.w3.org/2002/07/owl#&gt;
+PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX biom_res: &lt;http://www.biom-format.org/resource/&gt;
+SELECT ?value 
+WHERE { 
+?cell biom_res:BIOM_000025 biom_res:BIOM_000036 .
+?cell biom_res:BIOM_000026 biom_res:BIOM_000030 .
+?cell biom_res:BIOM_000027 ?value  
+}</rdfs:comment>
+        <rdfs:comment xml:lang="en">The BIOM table (Only first two rows implemented):
+
+Samples (Columns): Sample1 - Sample6
+Observations (Rows): GG_OTU_1 - GG_OTU_2
+
+0 0 1 0 0 0
+5 1 0 2 3 1
+0 0 1 4 2 0
+2 1 1 0 0 1
+0 1 1 0 0 0
+</rdfs:comment>
+        <resource:BIOM_000022 rdf:resource="&resource;BIOM_000029"/>
+        <resource:BIOM_000022 rdf:resource="&resource;BIOM_000030"/>
+        <resource:BIOM_000022 rdf:resource="&resource;BIOM_000031"/>
+        <resource:BIOM_000022 rdf:resource="&resource;BIOM_000032"/>
+        <resource:BIOM_000022 rdf:resource="&resource;BIOM_000033"/>
+        <resource:BIOM_000022 rdf:resource="&resource;BIOM_000034"/>
+        <resource:BIOM_000021 rdf:resource="&resource;BIOM_000035"/>
+        <resource:BIOM_000021 rdf:resource="&resource;BIOM_000036"/>
+        <resource:BIOM_000021 rdf:resource="&resource;BIOM_000037"/>
+        <resource:BIOM_000021 rdf:resource="&resource;BIOM_000038"/>
+        <resource:BIOM_000021 rdf:resource="&resource;BIOM_000039"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.biom-format.org/resource/BIOM_000029 -->
+
+    <owl:NamedIndividual rdf:about="&resource;BIOM_000029">
+        <rdfs:label xml:lang="en">Sample1</rdfs:label>
+        <rdfs:comment xml:lang="en">Example table</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.biom-format.org/resource/BIOM_000030 -->
+
+    <owl:NamedIndividual rdf:about="&resource;BIOM_000030">
+        <rdfs:label xml:lang="en">Sample2</rdfs:label>
+        <rdfs:comment xml:lang="en">Example table</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.biom-format.org/resource/BIOM_000031 -->
+
+    <owl:NamedIndividual rdf:about="&resource;BIOM_000031">
+        <rdfs:label xml:lang="en">Sample3</rdfs:label>
+        <rdfs:comment xml:lang="en">Example table</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.biom-format.org/resource/BIOM_000032 -->
+
+    <owl:NamedIndividual rdf:about="&resource;BIOM_000032">
+        <rdfs:label xml:lang="en">Sample4</rdfs:label>
+        <rdfs:comment xml:lang="en">Example table</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.biom-format.org/resource/BIOM_000033 -->
+
+    <owl:NamedIndividual rdf:about="&resource;BIOM_000033">
+        <rdfs:label xml:lang="en">Sample5</rdfs:label>
+        <rdfs:comment xml:lang="en">Example table</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.biom-format.org/resource/BIOM_000034 -->
+
+    <owl:NamedIndividual rdf:about="&resource;BIOM_000034">
+        <rdfs:label xml:lang="en">Sample6</rdfs:label>
+        <rdfs:comment xml:lang="en">Example table</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.biom-format.org/resource/BIOM_000035 -->
+
+    <owl:NamedIndividual rdf:about="&resource;BIOM_000035">
+        <rdfs:label xml:lang="en">GG_OTU_1</rdfs:label>
+        <rdfs:comment xml:lang="en">Example table</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.biom-format.org/resource/BIOM_000036 -->
+
+    <owl:NamedIndividual rdf:about="&resource;BIOM_000036">
+        <rdfs:label xml:lang="en">GG_OTU_2</rdfs:label>
+        <rdfs:comment xml:lang="en">Example table</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.biom-format.org/resource/BIOM_000037 -->
+
+    <owl:NamedIndividual rdf:about="&resource;BIOM_000037">
+        <rdfs:label xml:lang="en">GG_OTU_3</rdfs:label>
+        <rdfs:comment xml:lang="en">Example table</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.biom-format.org/resource/BIOM_000038 -->
+
+    <owl:NamedIndividual rdf:about="&resource;BIOM_000038">
+        <rdfs:label xml:lang="en">GG_OTU_4</rdfs:label>
+        <rdfs:comment xml:lang="en">Example table</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.biom-format.org/resource/BIOM_000039 -->
+
+    <owl:NamedIndividual rdf:about="&resource;BIOM_000039">
+        <rdfs:label xml:lang="en">GG_OTU_5</rdfs:label>
+        <rdfs:comment xml:lang="en">Example table</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.biom-format.org/resource/BIOM_000040 -->
+
+    <owl:NamedIndividual rdf:about="&resource;BIOM_000040">
+        <rdfs:label xml:lang="en">GG_OTU_1-Sample3</rdfs:label>
+        <resource:BIOM_000027 rdf:datatype="&xsd;double">1.0</resource:BIOM_000027>
+        <rdfs:comment xml:lang="en">Example table</rdfs:comment>
+        <resource:BIOM_000026 rdf:resource="&resource;BIOM_000031"/>
+        <resource:BIOM_000025 rdf:resource="&resource;BIOM_000035"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.biom-format.org/resource/BIOM_000041 -->
+
+    <owl:NamedIndividual rdf:about="&resource;BIOM_000041">
+        <rdfs:label xml:lang="en">GG_OTU_2-Sample1</rdfs:label>
+        <resource:BIOM_000027 rdf:datatype="&xsd;double">5.0</resource:BIOM_000027>
+        <rdfs:comment xml:lang="en">Example table</rdfs:comment>
+        <resource:BIOM_000026 rdf:resource="&resource;BIOM_000029"/>
+        <resource:BIOM_000025 rdf:resource="&resource;BIOM_000036"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.biom-format.org/resource/BIOM_000042 -->
+
+    <owl:NamedIndividual rdf:about="&resource;BIOM_000042">
+        <rdfs:label xml:lang="en">GG_OTU_2-Sample4</rdfs:label>
+        <resource:BIOM_000027 rdf:datatype="&xsd;double">2.0</resource:BIOM_000027>
+        <rdfs:comment xml:lang="en">Example table</rdfs:comment>
+        <resource:BIOM_000026 rdf:resource="&resource;BIOM_000032"/>
+        <resource:BIOM_000025 rdf:resource="&resource;BIOM_000036"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.biom-format.org/resource/BIOM_000043 -->
+
+    <owl:NamedIndividual rdf:about="&resource;BIOM_000043">
+        <rdfs:label xml:lang="en">GG_OTU_2-Sample5</rdfs:label>
+        <resource:BIOM_000027 rdf:datatype="&xsd;double">3.0</resource:BIOM_000027>
+        <rdfs:comment xml:lang="en">Example table</rdfs:comment>
+        <resource:BIOM_000026 rdf:resource="&resource;BIOM_000033"/>
+        <resource:BIOM_000025 rdf:resource="&resource;BIOM_000036"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.biom-format.org/resource/BIOM_000044 -->
+
+    <owl:NamedIndividual rdf:about="&resource;BIOM_000044">
+        <rdfs:label xml:lang="en">GG_OTU_2-Sample2</rdfs:label>
+        <resource:BIOM_000027 rdf:datatype="&xsd;double">1.0</resource:BIOM_000027>
+        <rdfs:comment xml:lang="en">Example table</rdfs:comment>
+        <resource:BIOM_000026 rdf:resource="&resource;BIOM_000030"/>
+        <resource:BIOM_000025 rdf:resource="&resource;BIOM_000036"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.biom-format.org/resource/BIOM_000045 -->
+
+    <owl:NamedIndividual rdf:about="&resource;BIOM_000045">
+        <rdfs:label xml:lang="en">GG_OTU_2-Sample6</rdfs:label>
+        <resource:BIOM_000027 rdf:datatype="&xsd;double">1.0</resource:BIOM_000027>
+        <rdfs:comment xml:lang="en">Example table</rdfs:comment>
+        <resource:BIOM_000026 rdf:resource="&resource;BIOM_000034"/>
+        <resource:BIOM_000025 rdf:resource="&resource;BIOM_000036"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.biom-format.org/resource/BIOM_000046 -->
+
+    <owl:NamedIndividual rdf:about="&resource;BIOM_000046">
+        <rdfs:label xml:lang="en">metadata1</rdfs:label>
+        <rdfs:comment xml:lang="en">Example table</rdfs:comment>
+        <resource2:SIO_000332 rdf:resource="&resource;BIOM_000029"/>
+        <resource:BIOM_000047 rdf:resource="&resource;BIOM_000048"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.biom-format.org/resource/BIOM_000048 -->
+
+    <owl:NamedIndividual rdf:about="&resource;BIOM_000048">
+        <rdfs:label xml:lang="en">human</rdfs:label>
+        <rdfs:comment xml:lang="en">Example table</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
     // General axioms
     //
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -505,6 +778,31 @@ For example, the JSON metadata entities &quot;Description&quot;: &quot;Human gut
             <rdf:Description rdf:about="&resource;BIOM_000010"/>
             <rdf:Description rdf:about="&resource;BIOM_000011"/>
         </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="&resource;BIOM_000028"/>
+            <rdf:Description rdf:about="&resource;BIOM_000029"/>
+            <rdf:Description rdf:about="&resource;BIOM_000030"/>
+            <rdf:Description rdf:about="&resource;BIOM_000031"/>
+            <rdf:Description rdf:about="&resource;BIOM_000032"/>
+            <rdf:Description rdf:about="&resource;BIOM_000033"/>
+            <rdf:Description rdf:about="&resource;BIOM_000034"/>
+            <rdf:Description rdf:about="&resource;BIOM_000035"/>
+            <rdf:Description rdf:about="&resource;BIOM_000036"/>
+            <rdf:Description rdf:about="&resource;BIOM_000037"/>
+            <rdf:Description rdf:about="&resource;BIOM_000038"/>
+            <rdf:Description rdf:about="&resource;BIOM_000039"/>
+            <rdf:Description rdf:about="&resource;BIOM_000040"/>
+            <rdf:Description rdf:about="&resource;BIOM_000041"/>
+            <rdf:Description rdf:about="&resource;BIOM_000042"/>
+            <rdf:Description rdf:about="&resource;BIOM_000043"/>
+            <rdf:Description rdf:about="&resource;BIOM_000044"/>
+            <rdf:Description rdf:about="&resource;BIOM_000045"/>
+            <rdf:Description rdf:about="&resource;BIOM_000046"/>
+            <rdf:Description rdf:about="&resource;BIOM_000048"/>
+        </owl:distinctMembers>
     </rdf:Description>
 </rdf:RDF>
 

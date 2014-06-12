@@ -15,19 +15,28 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *  
  */
-package eu.genomic.resources.biom2ld.HDF5;
-
-import eu.genomic.resources.biom2ld.Storage.Store;
-import ncsa.hdf.object.HObject;
+package eu.genomic.resources.biom2ld.Storage;
 
 /**
  * @author Mikel Egaña Aranguren
  * @version
  * @date 
  */
-public abstract class HDF5SimpleHObjectParser extends HDF5HObjectParser {	
-	public HDF5SimpleHObjectParser(String path){
-		super(path);
+public enum BIOM_URI {
+	FunctionTable (NS.BIOM_RES.getNS() + "BIOM_000005","Function table"),
+	MetaboliteTable(NS.BIOM_RES.getNS() + "BIOM_000007", "Metabolite table"),
+	OrthologTable(NS.BIOM_RES.getNS() + "BIOM_000008", "Ortholog table"),
+	OTUTable(NS.BIOM_RES.getNS() + "BIOM_000009", "OTU table"),
+	GeneTable (NS.BIOM_RES.getNS() + "BIOM_000006","Gene table"),
+	PathwayTable (NS.BIOM_RES.getNS() + "BIOM_000010","Pathway table"),
+	TaxonTable (NS.BIOM_RES.getNS() + "BIOM_000011","Taxon table");
+	
+	private String biom_uri;
+	private String hdf_5_name;
+	
+	private BIOM_URI (String uri, String name){
+		this.biom_uri = uri;
+		this.hdf_5_name = name;
 	}
-	public abstract void execute(HObject hobject, Store store) throws Exception;
+	
 }

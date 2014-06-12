@@ -15,26 +15,13 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *  
  */
-package eu.genomic.resources.biom2ld;
-
-import eu.genomic.resources.biom2ld.HDF5.HDF5BIOMObservationMatrixDataDatasetParser;
-import eu.genomic.resources.biom2ld.HDF5.HDF5HObjectParser;
-import eu.genomic.resources.biom2ld.HDF5.HDF5File;
+package eu.genomic.resources.biom2ld.Storage;
 
 /**
  * @author Mikel Egaña Aranguren
  * @version
  * @date 
  */
-public class Application {
-
-	/**
-	 * @param args
-	 * @throws Exception ds_par
-	 */
-	public static void main(String[] args) throws Exception {
-		Engine engine = new Engine ("/home/mikel/UPV-EHU/Eclipse_Workspace/"
-				+ "biom-ld/data/rich_sparse_otu_table_hdf5.biom", "");
-		engine.work();
-	}
+public class Store {
+	public Store(){}
 }

@@ -15,19 +15,31 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *  
  */
-package eu.genomic.resources.biom2ld.HDF5;
-
-import eu.genomic.resources.biom2ld.Storage.Store;
-import ncsa.hdf.object.HObject;
+package eu.genomic.resources.biom2ld.Storage;
 
 /**
  * @author Mikel Egaña Aranguren
  * @version
  * @date 
  */
-public abstract class HDF5SimpleHObjectParser extends HDF5HObjectParser {	
-	public HDF5SimpleHObjectParser(String path){
-		super(path);
+public enum NS {
+	RDF ("http://www.w3.org/1999/02/22-rdf-syntax-ns#"),
+	OWL ("http://www.w3.org/2002/07/owl#"),
+	XSD ("http://www.w3.org/2001/XMLSchema#"),
+	RDFS ("http://www.w3.org/2000/01/rdf-schema#"),
+	BIOM_RES ("http://www.biom-format.org/resource/");
+	
+	private String ns_uri;
+	
+	private NS (String ns){
+		this.ns_uri=ns;
 	}
-	public abstract void execute(HObject hobject, Store store) throws Exception;
+	
+	public String getNS(){
+		return this.ns_uri;
+	}
+	public static void main(String[] args) {
+        System.out.println(NS.RDF.getNS());
+        System.out.println(NS.OWL.getNS());
+    }
 }

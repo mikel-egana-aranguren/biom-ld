@@ -1,0 +1,13 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX biom_res: <http://www.biom-format.org/resource/>
+SELECT ?ind ?object ?superclass
+WHERE { 
+?ind rdf:type ?object .  
+?object rdfs:subClassOf biom_res:BIOM_000004
+}
+
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX biom_res: <http://www.biom-format.org/resource/> SELECT ?ind WHERE { ?ind rdf:type ?object .  ?object rdfs:subClassOf biom_res:BIOM_000004 }
