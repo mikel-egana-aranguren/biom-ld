@@ -43,9 +43,9 @@ import com.hp.hpl.jena.query.QuerySolution;
 public class JenaOnMemoryStore extends Store{
 	private Model model;
 
-	public static void main(String[] args) {
-		JenaOnMemoryStore store = new JenaOnMemoryStore();
-		store.loadRDF("/home/mikel/UPV-EHU/Eclipse_Workspace/biom-ld/ontology/biom.owl");
+//	public static void main(String[] args) {
+//		JenaOnMemoryStore store = new JenaOnMemoryStore();
+//		store.loadRDF("/home/mikel/UPV-EHU/Eclipse_Workspace/biom-ld/ontology/biom.owl");
 //		Iterator<QuerySolution> results = store.execSelectQuery(BIOMSPARQLQueries.GetBIOMTableInstance.generateQuery());
 //		while (results.hasNext()) {
 //			QuerySolution soln = results.next();
@@ -61,12 +61,12 @@ public class JenaOnMemoryStore extends Store{
 //		 } catch (FileNotFoundException e) {
 //		 e.printStackTrace();
 //		 }
-	}
+//	}
 
 	public JenaOnMemoryStore() {
 		model = ModelFactory.createDefaultModel();
 	}
-
+	
 	public void loadRDF(String inputFileName) {
 		InputStream in = FileManager.get().open(inputFileName);
 		model.read(in, "");

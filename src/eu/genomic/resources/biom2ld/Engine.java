@@ -22,9 +22,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import eu.genomic.resources.biom2ld.HDF5.HDF5AttributeTypeParser;
 import eu.genomic.resources.biom2ld.HDF5.HDF5File;
 import eu.genomic.resources.biom2ld.HDF5.HDF5HObjectParser;
 import eu.genomic.resources.biom2ld.HDF5.HDF5BIOMObservationMatrixDataDatasetParser;
+import eu.genomic.resources.biom2ld.HDF5.HDF5SimpleHObjectParser;
 import eu.genomic.resources.biom2ld.Storage.JenaOnMemoryStore;
 
 
@@ -80,14 +82,24 @@ public class Engine {
 		
 		// Load BIOM ontology
 		store.loadRDF(ontology);
+		store.setBIOMURI(biom_table_uri);
 		
+		// Create the simple parsers we want to use
+		List<HDF5SimpleHObjectParser> simple_parsers = new ArrayList<HDF5SimpleHObjectParser>();
+		simple_parsers.add(new HDF5AttributeTypeParser());
 		
-
-
+		// For each parser, execute it: find the HDF5 object the parser can consume 
+		// and pass the object to the parser
+		Iterator simple_parsers_iterator = simple_parsers.iterator();
+		while (simple_parsers_iterator.hasNext()) {
+			try {
+				HDF5SimpleHObjectParser parser = (HDF5SimpleHObjectParser) simple_parsers_iterator.next();
+				parser.execute(file.getObject(parser.getHObjectPath()), store);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
-		
-
-		// Load simple parsers and execute
 		
 		
 		// Write the dataset

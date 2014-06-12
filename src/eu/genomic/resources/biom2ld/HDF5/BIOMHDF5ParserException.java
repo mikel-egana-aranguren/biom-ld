@@ -17,18 +17,50 @@
  */
 package eu.genomic.resources.biom2ld.HDF5;
 
-import eu.genomic.resources.biom2ld.Storage.Store;
-import ncsa.hdf.object.HObject;
-
 /**
  * @author Mikel Egaña Aranguren
  * @version
  * @date 
  */
-public abstract class HDF5SimpleHObjectParser extends HDF5HObjectParser {	
+public class BIOMHDF5ParserException extends Exception {
 
-	public HDF5SimpleHObjectParser(String path){
-		super(path);
+	/**
+	 * 
+	 */
+	public BIOMHDF5ParserException() {
 	}
-	public abstract void execute(HObject hobject, Store store) throws Exception;
+
+	/**
+	 * @param message
+	 */
+	public BIOMHDF5ParserException(String message) {
+		super(message);
+	}
+
+	/**
+	 * @param cause
+	 */
+	public BIOMHDF5ParserException(Throwable cause) {
+		super(cause);
+	}
+
+	/**
+	 * @param message
+	 * @param cause
+	 */
+	public BIOMHDF5ParserException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	/**
+	 * @param message
+	 * @param cause
+	 * @param enableSuppression
+	 * @param writableStackTrace
+	 */
+	public BIOMHDF5ParserException(String message, Throwable cause,
+			boolean enableSuppression, boolean writableStackTrace) {
+		super(message, cause, enableSuppression, writableStackTrace);
+	}
+
 }

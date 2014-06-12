@@ -39,4 +39,7 @@ public enum BIOM_URI {
 		this.hdf_5_name = name;
 	}
 	
+	public String getURI (){
+		return this.biom_uri;
+	}
 }

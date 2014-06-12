@@ -23,5 +23,12 @@ package eu.genomic.resources.biom2ld.Storage;
  * @date 
  */
 public class Store {
+	private String biom_table_uri;
 	public Store(){}
+	public void setBIOMURI (String uri){
+		this.biom_table_uri = uri;
+	}
+	public String get_BIOM_table_instance_URI (){
+		return this.biom_table_uri;
+	}
 }
