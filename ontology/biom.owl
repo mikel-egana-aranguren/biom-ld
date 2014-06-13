@@ -23,9 +23,6 @@
      xmlns:resource2="http://semanticscience.org/resource/">
     <owl:Ontology rdf:about="http://www.biom-format.org/ontology/biom.owl">
         <terms:license rdf:datatype="&xsd;anyURI">http://creativecommons.org/licenses/by/3.0/</terms:license>
-        <terms:creator>Mikel Egaña Aranguren</terms:creator>
-        <owl:versionInfo xml:lang="en">0.0.1
-</owl:versionInfo>
         <rdfs:comment xml:lang="en">Direct translation of the BIOM file format to OWL (http://biom-format.org/documentation/format_versions/biom-2.0.html).
 
 This ontology offers a general schema for BIOM data. A BIOM table would be an instance of any of the BIOMTable&apos;s subclasses.
@@ -40,7 +37,12 @@ BIOM attributes not mapped directly:
 
 Most of the HDF5 groups and datasets are not mapped, since are not necessary: only the data and indices datasets for samples and observations are mapped.
 
-The metadata mapping is dependant on each table, since any JSON object can be defined. The metadata should, in any case, refer to the observation and sample instances (see &quot;is about&quot; property).</rdfs:comment>
+The metadata mapping is dependant on each table, since any JSON object can be defined. The metadata should, in any case, refer to the observation and sample instances (see &quot;is about&quot; property).
+
+For an example of the mapping, see biom_example_table.owl</rdfs:comment>
+        <terms:creator>Mikel Egaña Aranguren</terms:creator>
+        <owl:versionInfo xml:lang="en">0.0.1
+</owl:versionInfo>
         <owl:imports rdf:resource="http://semanticscience.org/ontology/sio.owl"/>
         <owl:versionIRI rdf:resource="http://www.biom-format.org/ontology/biom-v0.0.1.owl"/>
     </owl:Ontology>
@@ -304,6 +306,12 @@ Since metadata associated with Samples and Observations is the most interesting 
         </owl:equivalentClass>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&resource;BIOM_000017"/>
+                <owl:someValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&resource;BIOM_000019"/>
                 <owl:someValuesFrom rdf:resource="&xsd;nonNegativeInteger"/>
             </owl:Restriction>
@@ -316,20 +324,14 @@ Since metadata associated with Samples and Observations is the most interesting 
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&resource;BIOM_000016"/>
-                <owl:someValuesFrom rdf:resource="&xsd;dateTime"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&resource;BIOM_000018"/>
                 <owl:someValuesFrom rdf:resource="&xsd;nonNegativeInteger"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&resource;BIOM_000017"/>
-                <owl:someValuesFrom rdf:resource="&xsd;string"/>
+                <owl:onProperty rdf:resource="&resource;BIOM_000016"/>
+                <owl:someValuesFrom rdf:resource="&xsd;dateTime"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment xml:lang="en">A BIOM table is an instance of any of the subclasses of this class. A BIOM table instance maps to an HDF5 file</rdfs:comment>

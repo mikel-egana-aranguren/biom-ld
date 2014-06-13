@@ -17,7 +17,10 @@
  */
 package eu.genomic.resources.biom2ld.HDF5;
 
+import java.util.List;
+
 import eu.genomic.resources.biom2ld.Storage.Store;
+import ncsa.hdf.object.Attribute;
 import ncsa.hdf.object.HObject;
 
 /**
@@ -29,6 +32,18 @@ public abstract class HDF5SimpleHObjectParser extends HDF5HObjectParser {
 
 	public HDF5SimpleHObjectParser(String path){
 		super(path);
+	}
+	public Attribute getMetadataAttributeByName (List metadata, String attr_name){
+		Attribute result = null;
+		for (Object o : metadata) {
+            Attribute a = (Attribute) o;
+//            System.out.println(a.getName() + "=" + Arrays.toString((String[]) a.getValue()));
+            if(a.getName().equals(attr_name)){
+            	result = a;
+            	break;
+            }
+		}
+		return result;
 	}
 	public abstract void execute(HObject hobject, Store store) throws Exception;
 }

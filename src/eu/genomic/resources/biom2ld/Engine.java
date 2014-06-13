@@ -22,6 +22,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import eu.genomic.resources.biom2ld.HDF5.HDF5AttributeCreationDateParser;
+import eu.genomic.resources.biom2ld.HDF5.HDF5AttributeGeneratedByParser;
+import eu.genomic.resources.biom2ld.HDF5.HDF5AttributeNNZParser;
+import eu.genomic.resources.biom2ld.HDF5.HDF5AttributeShapeParser;
 import eu.genomic.resources.biom2ld.HDF5.HDF5AttributeTypeParser;
 import eu.genomic.resources.biom2ld.HDF5.HDF5File;
 import eu.genomic.resources.biom2ld.HDF5.HDF5HObjectParser;
@@ -87,10 +91,14 @@ public class Engine {
 		// Create the simple parsers we want to use
 		List<HDF5SimpleHObjectParser> simple_parsers = new ArrayList<HDF5SimpleHObjectParser>();
 		simple_parsers.add(new HDF5AttributeTypeParser());
+		simple_parsers.add(new HDF5AttributeGeneratedByParser());
+		simple_parsers.add(new HDF5AttributeCreationDateParser());
+		simple_parsers.add(new HDF5AttributeNNZParser());
+		simple_parsers.add(new HDF5AttributeShapeParser());
 		
 		// For each parser, execute it: find the HDF5 object the parser can consume 
 		// and pass the object to the parser
-		Iterator simple_parsers_iterator = simple_parsers.iterator();
+		Iterator<HDF5SimpleHObjectParser> simple_parsers_iterator = simple_parsers.iterator();
 		while (simple_parsers_iterator.hasNext()) {
 			try {
 				HDF5SimpleHObjectParser parser = (HDF5SimpleHObjectParser) simple_parsers_iterator.next();
@@ -100,6 +108,12 @@ public class Engine {
 			}
 		}
 		
+		
+		// !!!!!!!!!!!!!!!!!!!!
+		
+		// instead of complex parser, pass the hasmap with the store, like biom table uri!
+		
+		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		
 		
 		// Write the dataset
@@ -128,26 +142,21 @@ public class Engine {
 //			}
 //		}
 	}
-	
-	
-	
-	
-	
-	
-	// Testing pass by reference in JENA
-//	add_ref_triple(store, 
-//			"http://genomic-resources.eu/biom_table_1/a",
-//			"http://www.biom-format.org/resource/BIOM_000025",
-//			"http://genomic-resources.eu/biom_table_1/b"
-//			);
-//	
-//	add_ref_triple(store, 
-//			"http://genomic-resources.eu/biom_table_1/c",
-//			"http://www.biom-format.org/resource/BIOM_000025",
-//			"http://genomic-resources.eu/biom_table_1/d"
-//			);
-//	
-//	private static void add_ref_triple (JenaOnMemoryStore store,String sub_uri, String prop_uri, String obj_uri){
-//		store.addTriple(sub_uri, prop_uri, obj_uri);
-//	}
 }
+
+// Testing pass by reference in JENA
+//add_ref_triple(store, 
+//		"http://genomic-resources.eu/biom_table_1/a",
+//		"http://www.biom-format.org/resource/BIOM_000025",
+//		"http://genomic-resources.eu/biom_table_1/b"
+//		);
+//
+//add_ref_triple(store, 
+//		"http://genomic-resources.eu/biom_table_1/c",
+//		"http://www.biom-format.org/resource/BIOM_000025",
+//		"http://genomic-resources.eu/biom_table_1/d"
+//		);
+//
+//private static void add_ref_triple (JenaOnMemoryStore store,String sub_uri, String prop_uri, String obj_uri){
+//	store.addTriple(sub_uri, prop_uri, obj_uri);
+//}

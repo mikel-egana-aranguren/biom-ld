@@ -24,12 +24,17 @@ package eu.genomic.resources.biom2ld.Storage;
  */
 public enum BIOM_URI {
 	FunctionTable (NS.BIOM_RES.getNS() + "BIOM_000005","Function table"),
-	MetaboliteTable(NS.BIOM_RES.getNS() + "BIOM_000007", "Metabolite table"),
-	OrthologTable(NS.BIOM_RES.getNS() + "BIOM_000008", "Ortholog table"),
-	OTUTable(NS.BIOM_RES.getNS() + "BIOM_000009", "OTU table"),
+	MetaboliteTable (NS.BIOM_RES.getNS() + "BIOM_000007", "Metabolite table"),
+	OrthologTable (NS.BIOM_RES.getNS() + "BIOM_000008", "Ortholog table"),
+	OTUTable (NS.BIOM_RES.getNS() + "BIOM_000009", "OTU table"),
 	GeneTable (NS.BIOM_RES.getNS() + "BIOM_000006","Gene table"),
 	PathwayTable (NS.BIOM_RES.getNS() + "BIOM_000010","Pathway table"),
-	TaxonTable (NS.BIOM_RES.getNS() + "BIOM_000011","Taxon table");
+	TaxonTable (NS.BIOM_RES.getNS() + "BIOM_000011","Taxon table"),
+	GeneratedBy (NS.BIOM_RES.getNS() + "BIOM_000017","generated-by"),
+	CreationDate (NS.BIOM_RES.getNS() + "BIOM_000016","creation-date"),
+	NumberNonZeroElements (NS.BIOM_RES.getNS() + "BIOM_000018","nnz"),
+	NumberOfObservations (NS.BIOM_RES.getNS() + "BIOM_000019","number of Observations (Rows)"),
+	NumberOfSamples (NS.BIOM_RES.getNS() + "BIOM_000020","number of Samples (Columns)");
 	
 	private String biom_uri;
 	private String hdf_5_name;

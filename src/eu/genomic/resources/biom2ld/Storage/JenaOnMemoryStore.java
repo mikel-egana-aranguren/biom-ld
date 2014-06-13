@@ -23,6 +23,7 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Iterator;
 
+import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
@@ -32,6 +33,7 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.ResourceFactory;
 import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.query.QuerySolution;
 
@@ -77,6 +79,14 @@ public class JenaOnMemoryStore extends Store{
 		Property prop = model.createProperty(prop_uri);
 		Resource obj = model.createResource(obj_uri);
 		sub.addProperty(prop, obj);
+	}
+	
+	public void addLiteral(String sub_uri, String prop_uri, String value, XSDDatatype xsd) {
+//		model.add (subject, predicate, ResourceFactory.createTypedLiteral("2012-03-11", XSDDatatype.XSD));
+//		model.add (subject, predicate, ResourceFactory.createTypedLiteral("2012-03-11", XSDDatatype.XSDdateTime));
+		Resource sub = model.createResource(sub_uri);
+		Property prop = model.createProperty(prop_uri);
+		model.add(sub, prop, ResourceFactory.createTypedLiteral(value, xsd));
 	}
 
 	public ResultSet execSelectQuery(String queryString) {
