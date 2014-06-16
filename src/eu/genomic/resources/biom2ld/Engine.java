@@ -27,10 +27,11 @@ import eu.genomic.resources.biom2ld.HDF5.HDF5AttributeGeneratedByParser;
 import eu.genomic.resources.biom2ld.HDF5.HDF5AttributeNNZParser;
 import eu.genomic.resources.biom2ld.HDF5.HDF5AttributeShapeParser;
 import eu.genomic.resources.biom2ld.HDF5.HDF5AttributeTypeParser;
+import eu.genomic.resources.biom2ld.HDF5.HDF5DatasetObservationIDsParser;
 import eu.genomic.resources.biom2ld.HDF5.HDF5File;
+import eu.genomic.resources.biom2ld.HDF5.HDF5GroupObservationParser;
 import eu.genomic.resources.biom2ld.HDF5.HDF5HObjectParser;
-import eu.genomic.resources.biom2ld.HDF5.HDF5BIOMObservationMatrixDataDatasetParser;
-import eu.genomic.resources.biom2ld.HDF5.HDF5SimpleHObjectParser;
+import eu.genomic.resources.biom2ld.HDF5.HDF5DatasetSampleIDsParser;
 import eu.genomic.resources.biom2ld.Storage.JenaOnMemoryStore;
 
 
@@ -88,59 +89,37 @@ public class Engine {
 		store.loadRDF(ontology);
 		store.setBIOMURI(biom_table_uri);
 		
-		// Create the simple parsers we want to use
-		List<HDF5SimpleHObjectParser> simple_parsers = new ArrayList<HDF5SimpleHObjectParser>();
-		simple_parsers.add(new HDF5AttributeTypeParser());
-		simple_parsers.add(new HDF5AttributeGeneratedByParser());
-		simple_parsers.add(new HDF5AttributeCreationDateParser());
-		simple_parsers.add(new HDF5AttributeNNZParser());
-		simple_parsers.add(new HDF5AttributeShapeParser());
+		// Create the parsers we will use
+		List<HDF5HObjectParser> parsers = new ArrayList<HDF5HObjectParser>();
+		parsers.add(new HDF5AttributeTypeParser());
+		parsers.add(new HDF5AttributeGeneratedByParser());
+		parsers.add(new HDF5AttributeCreationDateParser());
+		parsers.add(new HDF5AttributeNNZParser());
+		parsers.add(new HDF5AttributeShapeParser());
+		parsers.add(new HDF5DatasetSampleIDsParser());
+		parsers.add(new HDF5DatasetObservationIDsParser());
+		parsers.add(new HDF5GroupObservationParser());
 		
 		// For each parser, execute it: find the HDF5 object the parser can consume 
 		// and pass the object to the parser
-		Iterator<HDF5SimpleHObjectParser> simple_parsers_iterator = simple_parsers.iterator();
+		Iterator<HDF5HObjectParser> simple_parsers_iterator = parsers.iterator();
 		while (simple_parsers_iterator.hasNext()) {
 			try {
-				HDF5SimpleHObjectParser parser = (HDF5SimpleHObjectParser) simple_parsers_iterator.next();
+				HDF5HObjectParser parser = (HDF5HObjectParser) simple_parsers_iterator.next();
 				parser.execute(file.getObject(parser.getHObjectPath()), store);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		
-		
-		// !!!!!!!!!!!!!!!!!!!!
-		
-		// instead of complex parser, pass the hasmap with the store, like biom table uri!
-		
-		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		
-		
-		// Write the dataset
+
+		// Dump the dataset
 		try {
 			store.dumpDataset(dump_path);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		
-		// Load cached parsers and execute
-		
-		// Create a list of the HDF5HObject parsers we want to use
-//		List<HDF5HObjectParser> parsers = new ArrayList<HDF5HObjectParser>();
-//		parsers.add(new HDF5BIOMObservationMatrixDataDatasetParser());
 
-		// For each parser, execute it, i.e. find the object that can consume in
-		// the HDF5 file and consume it
-//		Iterator parsers_iterator = parsers.iterator();
-//		while (parsers_iterator.hasNext()) {
-//			try {
-//				HDF5HObjectParser parser = (HDF5HObjectParser) parsers_iterator
-//						.next();
-//				parser.execute(file.getObject(parser.getHObjectPath()));
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
 	}
 }
 

@@ -15,23 +15,48 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *  
  */
-package eu.genomic.resources.biom2ld.HDF5;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import ncsa.hdf.object.HObject;
+package eu.genomic.resources.biom2ld.Storage;
 
 /**
  * @author Mikel Egaña Aranguren
  * @version
  * @date 
  */
+public final class BIOMCellValue {
+	 private double value;
+	 private int row_index;
+	 private int col_index;
 
-public abstract class HDF5CachedHObjectParser extends HDF5HObjectParser{
-	
-	public HDF5CachedHObjectParser(String path){
-		super(path);
+	/**
+	 * @param value
+	 * @param row_index
+	 * @param col_index
+	 */
+	public BIOMCellValue(double value, int row_index, int col_index) {
+		this.value = value;
+		this.row_index = row_index;
+		this.col_index = col_index;
 	}
-	public abstract Map<Integer,String> execute (HObject hobject, HashMap cache) throws Exception;
+
+	/**
+	 * @return the value
+	 */
+	public final double getValue() {
+		return value;
+	}
+
+	/**
+	 * @return the row_index
+	 */
+	public final int getRow_index() {
+		return row_index;
+	}
+
+	/**
+	 * @return the col_index
+	 */
+	public final int getCol_index() {
+		return col_index;
+	}
+
 }

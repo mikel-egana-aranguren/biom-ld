@@ -20,7 +20,9 @@ package eu.genomic.resources.biom2ld.HDF5;
 import java.util.HashMap;
 import java.util.Map;
 
+import eu.genomic.resources.biom2ld.Storage.Store;
 import ncsa.hdf.object.Dataset;
+import ncsa.hdf.object.Group;
 import ncsa.hdf.object.HObject;
 
 /**
@@ -29,29 +31,24 @@ import ncsa.hdf.object.HObject;
  * 
  * @author Mikel Egaña Aranguren
  * @version 0.0.1
- * @date 
+ * @date
  */
-public class HDF5BIOMObservationMatrixDataDatasetParser extends HDF5CachedHObjectParser {
+public class HDF5DatasetSampleIDsParser extends HDF5HObjectParser {
 
 	/**
 	 * @param path
 	 */
-	public HDF5BIOMObservationMatrixDataDatasetParser() {
-		super("observation/matrix/data");
+	public HDF5DatasetSampleIDsParser() {
+		super("observation/ids");
 	}
 
-	/* (non-Javadoc)
-	 * @see eu.genomic.resources.biom2ld.HDF5.HDF5ElementParser#execute()
-	 */
 	@Override
-	public Map<Integer,String> execute(HObject hobject, HashMap col_ids_names) throws Exception {
-		Dataset dataset = (Dataset) hobject;
-
-			double [] data = (double[]) dataset.getData();
-			for (int k = 0; k < data.length; k++) {
-				System.out.println(data[k]);
-			}
-			return col_ids_names;
+	public void execute(HObject hobject, Store store) throws Exception {
+		String[] data = (String[]) ((Dataset) hobject).getData();
+		for (int k = 0; k < data.length; k++) {
+			store.set_observation_id_name(k, data[k]);
+//			System.out.println(k +" - "+ data[k]);
+		}
 	}
 
 }

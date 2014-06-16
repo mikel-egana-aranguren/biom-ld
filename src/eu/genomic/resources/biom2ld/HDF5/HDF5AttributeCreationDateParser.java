@@ -33,7 +33,7 @@ import eu.genomic.resources.biom2ld.Storage.Store;
  * @version
  * @date
  */
-public class HDF5AttributeCreationDateParser extends HDF5SimpleHObjectParser {
+public class HDF5AttributeCreationDateParser extends HDF5HObjectParser {
 
 	public HDF5AttributeCreationDateParser() {
 		super("/");
@@ -55,7 +55,6 @@ public class HDF5AttributeCreationDateParser extends HDF5SimpleHObjectParser {
 					"Could not find attribute creation-date in HDF5 file");
 		} else {
 			String creation_date_value = ((String[]) attr.getValue())[0];
-//			System.out.println(creation_date_value);
 			((JenaOnMemoryStore) store).addLiteral(
 					((JenaOnMemoryStore) store).get_BIOM_table_instance_URI(),
 					BIOM_URI.CreationDate.getURI(), creation_date_value, XSDDatatype.XSDdateTime);

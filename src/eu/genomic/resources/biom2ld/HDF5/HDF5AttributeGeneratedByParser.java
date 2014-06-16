@@ -33,7 +33,7 @@ import eu.genomic.resources.biom2ld.Storage.Store;
  * @version
  * @date
  */
-public class HDF5AttributeGeneratedByParser extends HDF5SimpleHObjectParser {
+public class HDF5AttributeGeneratedByParser extends HDF5HObjectParser {
 
 	public HDF5AttributeGeneratedByParser() {
 		super("/");

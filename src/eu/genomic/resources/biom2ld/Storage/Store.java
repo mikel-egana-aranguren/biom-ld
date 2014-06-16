@@ -17,6 +17,8 @@
  */
 package eu.genomic.resources.biom2ld.Storage;
 
+import java.util.Hashtable;
+
 /**
  * @author Mikel Egaña Aranguren
  * @version
@@ -24,11 +26,28 @@ package eu.genomic.resources.biom2ld.Storage;
  */
 public class Store {
 	private String biom_table_uri;
-	public Store(){}
+	private Hashtable<Integer, String> sample_ids_names;
+	private Hashtable<Integer, String> observation_ids_names;
+	public Store(){
+		this.sample_ids_names = new Hashtable<Integer, String>();
+		this.observation_ids_names = new Hashtable<Integer, String>();
+	}
 	public void setBIOMURI (String uri){
 		this.biom_table_uri = uri;
 	}
 	public String get_BIOM_table_instance_URI (){
 		return this.biom_table_uri;
+	}
+	public void set_sample_id_name (Integer id, String name){
+		sample_ids_names.put(id, name);
+	}
+	public String get_sample_name_by_id (Integer id){
+		return sample_ids_names.get(id);
+	}
+	public void set_observation_id_name (Integer id, String name){
+		observation_ids_names.put(id, name);
+	}
+	public String get_observation_name_by_id (Integer id){
+		return observation_ids_names.get(id);
 	}
 }

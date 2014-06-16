@@ -17,12 +17,18 @@
  */
 package eu.genomic.resources.biom2ld.HDF5;
 
+import java.util.List;
+
+import ncsa.hdf.object.Attribute;
+import ncsa.hdf.object.HObject;
+import eu.genomic.resources.biom2ld.Storage.Store;
+
 /**
  * @author Mikel Egaña Aranguren
  * @version
  * @date 
  */
-public class HDF5HObjectParser{
+public abstract class HDF5HObjectParser{
 	private String targetPath;
 	
 	public HDF5HObjectParser(String path){
@@ -33,6 +39,18 @@ public class HDF5HObjectParser{
 		return targetPath;
 	}
 	
-	// Store object = pass it like the cache
-	// "DB" access (Prefered) = add triple store interface with constructor, add methods "addItem (s,p,o); addIteam(key,value)"
+	public abstract void execute(HObject hobject, Store store) throws Exception;
+	
+	public Attribute getMetadataAttributeByName (List metadata, String attr_name){
+		Attribute result = null;
+		for (Object o : metadata) {
+            Attribute a = (Attribute) o;
+            if(a.getName().equals(attr_name)){
+            	result = a;
+            	break;
+            }
+		}
+		return result;
+	}
+	
 }
