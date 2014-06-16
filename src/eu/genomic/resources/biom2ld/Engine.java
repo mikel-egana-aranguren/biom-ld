@@ -32,16 +32,17 @@ import eu.genomic.resources.biom2ld.HDF5.HDF5File;
 import eu.genomic.resources.biom2ld.HDF5.HDF5GroupObservationParser;
 import eu.genomic.resources.biom2ld.HDF5.HDF5HObjectParser;
 import eu.genomic.resources.biom2ld.HDF5.HDF5DatasetSampleIDsParser;
+import eu.genomic.resources.biom2ld.Storage.BIOM_URI;
 import eu.genomic.resources.biom2ld.Storage.JenaOnMemoryStore;
-
+import eu.genomic.resources.biom2ld.Storage.NS;
 
 /**
  * 
- * Converts an HDF5 file to RDF
+ * This engine is able to convert a BIOM file, codified in HDF5 format, to RDF
  * 
  * @author Mikel Egaña Aranguren
  * @version 0.0.1
- * @date
+ * @date 2014 eka 16
  */
 public class Engine {
 
@@ -51,11 +52,10 @@ public class Engine {
 	private String dump_path;
 
 	/**
-	 * 
-	 * Main engine for converting HDF5 to RDF
-	 * 
-	 * @param HDF5FilePath
-	 * @param TripleStoreConf
+	 * @param HDF5FilePath the path for the HDF5 file
+	 * @param biom_ontology_path the path to the BIOM ontology (e.g. ontology/biom.owl) 
+	 * @param biom_table the URI of the instance that will represent the BIOM table (e.g. http://genomic-resources.eu/biom_table_1): everything hangs from thie instance
+	 * @param output the path for the RDF dump
 	 */
 	public Engine(String HDF5FilePath, String biom_ontology_path, String biom_table, String output) {
 		hdf5_file_path = HDF5FilePath;
@@ -67,16 +67,17 @@ public class Engine {
 	
 	public static void main(String[] args) {
 		Engine engine = new Engine(
-				"/home/mikel/UPV-EHU/Eclipse_Workspace/biom-ld/data/rich_sparse_otu_table_hdf5.biom", 
-				"/home/mikel/UPV-EHU/Eclipse_Workspace/biom-ld/ontology/biom.owl", 
-				"http://genomic-resources.eu/biom_table_1", 
-				"/home/mikel/UPV-EHU/Eclipse_Workspace/biom-ld/result/biom.rdf");
+//				"/home/mikel/UPV-EHU/Eclipse_Workspace/biom-ld/data/rich_sparse_otu_table_hdf5.biom", 
+//				"/home/mikel/UPV-EHU/Eclipse_Workspace/biom-ld/ontology/biom.owl", 
+//				"http://genomic-resources.eu/biom_table_1", 
+//				"/home/mikel/UPV-EHU/Eclipse_Workspace/biom-ld/result/biom.rdf"
+				args[0], args[1], args[2], args[3]
+				);
 		engine.work();
 		
 	}
 	/**
-	 * For each parser, find its target in the HDF5 file and if found execute
-	 * parser against Triple Store, adding necessary info to the cache for other parsers to use
+	 * Convert the HDF5 file to RDF
 	 */
 	public void work() {
 		// Load the HDF5 file
@@ -88,7 +89,7 @@ public class Engine {
 		// Load BIOM ontology
 		store.loadRDF(ontology);
 		store.setBIOMURI(biom_table_uri);
-		
+				
 		// Create the parsers we will use
 		List<HDF5HObjectParser> parsers = new ArrayList<HDF5HObjectParser>();
 		parsers.add(new HDF5AttributeTypeParser());
@@ -100,7 +101,7 @@ public class Engine {
 		parsers.add(new HDF5DatasetObservationIDsParser());
 		parsers.add(new HDF5GroupObservationParser());
 		
-		// For each parser, execute it: find the HDF5 object the parser can consume 
+		// For each parser, execute it: find the HDF5 object the parser can consume, get it from the file 
 		// and pass the object to the parser
 		Iterator<HDF5HObjectParser> simple_parsers_iterator = parsers.iterator();
 		while (simple_parsers_iterator.hasNext()) {
@@ -119,7 +120,7 @@ public class Engine {
 			e.printStackTrace();
 		}
 		
-
+		
 	}
 }
 

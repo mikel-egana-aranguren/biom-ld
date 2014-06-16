@@ -37,10 +37,14 @@ import com.hp.hpl.jena.rdf.model.ResourceFactory;
 import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.query.QuerySolution;
 
+
 /**
+ * 
+ * An on memory Jena Triple Store
+ * 
  * @author Mikel Egaña Aranguren
- * @version
- * @date
+ * @version 0.0.1
+ * @date 2014 eka 16
  */
 public class JenaOnMemoryStore extends Store{
 	private Model model;
@@ -69,11 +73,24 @@ public class JenaOnMemoryStore extends Store{
 		model = ModelFactory.createDefaultModel();
 	}
 	
+	/**
+	 * Load an RDF file into the model
+	 * 
+	 * @param inputFileName
+	 */
 	public void loadRDF(String inputFileName) {
 		InputStream in = FileManager.get().open(inputFileName);
 		model.read(in, "");
 	}
 
+	/**
+	 * 
+	 * Add a triple into the model
+	 * 
+	 * @param sub_uri subject URI
+	 * @param prop_uri property URI
+	 * @param obj_uri object URI
+	 */
 	public void addTriple(String sub_uri, String prop_uri, String obj_uri) {
 		Resource sub = model.createResource(sub_uri);
 		Property prop = model.createProperty(prop_uri);
@@ -81,6 +98,15 @@ public class JenaOnMemoryStore extends Store{
 		sub.addProperty(prop, obj);
 	}
 	
+	/**
+	 * 
+	 * Add a literal value triple into the model
+	 * 
+	 * @param sub_uri subject URI
+	 * @param prop_uri property URI
+	 * @param value the actual value
+	 * @param xsd the XSD datatype of the value
+	 */
 	public void addLiteral(String sub_uri, String prop_uri, String value, XSDDatatype xsd) {
 //		model.add (subject, predicate, ResourceFactory.createTypedLiteral("2012-03-11", XSDDatatype.XSD));
 //		model.add (subject, predicate, ResourceFactory.createTypedLiteral("2012-03-11", XSDDatatype.XSDdateTime));

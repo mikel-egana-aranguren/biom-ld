@@ -18,30 +18,37 @@
 package eu.genomic.resources.biom2ld.Storage;
 
 /**
+ * 
+ * The BIOM format URIs, also found in the BIOM ontology
+ * 
  * @author Mikel Egaña Aranguren
- * @version
- * @date 
+ * @version 0.0.1
+ * @date 2014 eka 16
  */
 public enum BIOM_URI {
-	FunctionTable (NS.BIOM_RES.getNS() + "BIOM_000005","Function table"),
-	MetaboliteTable (NS.BIOM_RES.getNS() + "BIOM_000007", "Metabolite table"),
-	OrthologTable (NS.BIOM_RES.getNS() + "BIOM_000008", "Ortholog table"),
-	OTUTable (NS.BIOM_RES.getNS() + "BIOM_000009", "OTU table"),
-	GeneTable (NS.BIOM_RES.getNS() + "BIOM_000006","Gene table"),
-	PathwayTable (NS.BIOM_RES.getNS() + "BIOM_000010","Pathway table"),
-	TaxonTable (NS.BIOM_RES.getNS() + "BIOM_000011","Taxon table"),
-	GeneratedBy (NS.BIOM_RES.getNS() + "BIOM_000017","generated-by"),
-	CreationDate (NS.BIOM_RES.getNS() + "BIOM_000016","creation-date"),
-	NumberNonZeroElements (NS.BIOM_RES.getNS() + "BIOM_000018","nnz"),
-	NumberOfObservations (NS.BIOM_RES.getNS() + "BIOM_000019","number of Observations (Rows)"),
-	NumberOfSamples (NS.BIOM_RES.getNS() + "BIOM_000020","number of Samples (Columns)");
+	FunctionTable (NS.BIOM_RES.getURI() + "BIOM_000005"), 
+	MetaboliteTable (NS.BIOM_RES.getURI() + "BIOM_000007"),
+	OrthologTable (NS.BIOM_RES.getURI() + "BIOM_000008"),
+	OTUTable (NS.BIOM_RES.getURI() + "BIOM_000009"),
+	GeneTable (NS.BIOM_RES.getURI() + "BIOM_000006"),
+	PathwayTable (NS.BIOM_RES.getURI() + "BIOM_000010"),
+	TaxonTable (NS.BIOM_RES.getURI() + "BIOM_000011"),
+	GeneratedBy (NS.BIOM_RES.getURI() + "BIOM_000017"),
+	CreationDate (NS.BIOM_RES.getURI() + "BIOM_000016"),
+	NumberNonZeroElements (NS.BIOM_RES.getURI() + "BIOM_000018"),
+	NumberOfObservations (NS.BIOM_RES.getURI() + "BIOM_000019"),
+	NumberOfSamples (NS.BIOM_RES.getURI() + "BIOM_000020"),
+	Observation (NS.BIOM_RES.getURI() + "BIOM_000021"),
+	Sample (NS.BIOM_RES.getURI() + "BIOM_000022"),
+	RefersToObservation (NS.BIOM_RES.getURI() + "BIOM_000025"),
+	RefersToSample (NS.BIOM_RES.getURI() + "BIOM_000026"),
+	NumericalValue (NS.BIOM_RES.getURI() + "BIOM_000027");
 	
 	private String biom_uri;
-	private String hdf_5_name;
-	
-	private BIOM_URI (String uri, String name){
+
+	private BIOM_URI (String uri){
 		this.biom_uri = uri;
-		this.hdf_5_name = name;
+
 	}
 	
 	public String getURI (){

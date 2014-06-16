@@ -25,13 +25,16 @@ import ncsa.hdf.object.Attribute;
 import ncsa.hdf.object.HObject;
 import eu.genomic.resources.biom2ld.Storage.BIOM_URI;
 import eu.genomic.resources.biom2ld.Storage.JenaOnMemoryStore;
-import eu.genomic.resources.biom2ld.Storage.NS;
 import eu.genomic.resources.biom2ld.Storage.Store;
 
+
 /**
+ * 
+ * A parser for the BIOM attribute shape
+ * 
  * @author Mikel Egaña Aranguren
- * @version
- * @date
+ * @version 0.0.1
+ * @date 2014 eka 16
  */
 public class HDF5AttributeShapeParser extends HDF5HObjectParser {
 

@@ -17,21 +17,20 @@
  */
 package eu.genomic.resources.biom2ld.HDF5;
 
-import java.util.HashMap;
-import java.util.Map;
+
 
 import eu.genomic.resources.biom2ld.Storage.Store;
 import ncsa.hdf.object.Dataset;
-import ncsa.hdf.object.Group;
 import ncsa.hdf.object.HObject;
+
 
 /**
  * 
- * A parser for the dataset observation/matrix/data
+ * A parser for the dataset sample/ids
  * 
  * @author Mikel Egaña Aranguren
  * @version 0.0.1
- * @date
+ * @date 2014 eka 16
  */
 public class HDF5DatasetSampleIDsParser extends HDF5HObjectParser {
 
@@ -39,7 +38,7 @@ public class HDF5DatasetSampleIDsParser extends HDF5HObjectParser {
 	 * @param path
 	 */
 	public HDF5DatasetSampleIDsParser() {
-		super("observation/ids");
+		super("sample/ids");
 	}
 
 	@Override

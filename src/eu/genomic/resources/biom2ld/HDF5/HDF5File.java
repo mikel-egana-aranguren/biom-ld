@@ -28,7 +28,7 @@ import ncsa.hdf.object.HObject;
  * 
  * @author Mikel Egaña Aranguren
  * @version 0.0.1
- * @date
+ * @date 2014 eka 16
  */
 public class HDF5File {
 	private final String filePath;

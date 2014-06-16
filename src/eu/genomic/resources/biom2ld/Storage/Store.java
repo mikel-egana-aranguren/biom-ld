@@ -20,9 +20,12 @@ package eu.genomic.resources.biom2ld.Storage;
 import java.util.Hashtable;
 
 /**
+ * 
+ * A store is anything that can store the information from the BIOM HDF5 file. It includes the maps from HDF5 ids (integers) to actual names for observations and samples
+ * 
  * @author Mikel Egaña Aranguren
- * @version
- * @date 
+ * @version 0.0.1
+ * @date 2014 eka 16
  */
 public class Store {
 	private String biom_table_uri;
@@ -32,18 +35,38 @@ public class Store {
 		this.sample_ids_names = new Hashtable<Integer, String>();
 		this.observation_ids_names = new Hashtable<Integer, String>();
 	}
+	/**
+	 * 
+	 * Set the BIOM table instance URI
+	 * 
+	 * @param uri
+	 */
 	public void setBIOMURI (String uri){
 		this.biom_table_uri = uri;
 	}
 	public String get_BIOM_table_instance_URI (){
 		return this.biom_table_uri;
 	}
+	/**
+	 * 
+	 * Add a sample (column) id - name pair to the cache
+	 * 
+	 * @param id
+	 * @param name
+	 */
 	public void set_sample_id_name (Integer id, String name){
 		sample_ids_names.put(id, name);
 	}
 	public String get_sample_name_by_id (Integer id){
 		return sample_ids_names.get(id);
 	}
+	/**
+	 * 
+	 * Add an obsevation (row) id - name pair to the cache
+	 * 
+	 * @param id
+	 * @param name
+	 */
 	public void set_observation_id_name (Integer id, String name){
 		observation_ids_names.put(id, name);
 	}

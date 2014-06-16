@@ -17,10 +17,14 @@
  */
 package eu.genomic.resources.biom2ld.Storage;
 
+
 /**
+ * 
+ * An object to store a BIOM table cell
+ * 
  * @author Mikel Egaña Aranguren
  * @version
- * @date 
+ * @date 2014 eka 16
  */
 public final class BIOMCellValue {
 	 private double value;
@@ -28,9 +32,9 @@ public final class BIOMCellValue {
 	 private int col_index;
 
 	/**
-	 * @param value
-	 * @param row_index
-	 * @param col_index
+	 * @param value the actual value of the cell
+	 * @param row_index the row of this cell
+	 * @param col_index the column of this cell
 	 */
 	public BIOMCellValue(double value, int row_index, int col_index) {
 		this.value = value;

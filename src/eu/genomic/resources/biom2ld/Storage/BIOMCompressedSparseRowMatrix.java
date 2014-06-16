@@ -23,16 +23,16 @@ import java.util.Iterator;
 /**
  * 
  * A representation of BIOM Compressed Sparse Row Matrix with associated
- * utilities.
- * 
- * See http://en.wikipedia.org/wiki/Sparse_matrix See
- * http://netlib.org/linalg/html_templates
- * /node91.html#SECTION00931100000000000000 See
- * http://homepage.cs.uiowa.edu/~sriram/21/fall07/code/CRS.java
+ * utilities. See:
+ * <ul>
+ * <li>http://en.wikipedia.org/wiki/Sparse_matrix</li>
+ * <li>http://netlib.org/linalg/html_templates/node91.html#SECTION00931100000000000000</li>
+ * <li>http://homepage.cs.uiowa.edu/~sriram/21/fall07/code/CRS.java</li>
+ * </ul>
  * 
  * @author Mikel Egaña Aranguren
  * @version 0.0.1
- * @date
+ * @date 2014 eka 16
  */
 public class BIOMCompressedSparseRowMatrix implements Iterable<ArrayList>{
 	 private double [] data;
@@ -61,23 +61,14 @@ public class BIOMCompressedSparseRowMatrix implements Iterable<ArrayList>{
 
 	}
 
-	public void walkCSR() {
-		int last_column = 0;
-		for (int k = 0; k < data.length; k++) {
-			last_column = getRowIndexFromDataValue(k, last_column);
-			System.out.println("VALUE " + data[k] + " COLUMN INDEX "
-					+ getColumnIndexFromDataValue(k) + " ROW INDEX "
-					+ last_column);
-		}
-	}
-//
-//	/**
-//	 * @param args
-//	 */
-//	public static void main(String[] args) {
-//		CompressedSparseRowMatrix matrix = new CompressedSparseRowMatrix(null,
-//				null, null);
-//		matrix.walkCSR();
+//	public void walkCSR() {
+//		int last_column = 0;
+//		for (int k = 0; k < data.length; k++) {
+//			last_column = getRowIndexFromDataValue(k, last_column);
+//			System.out.println("VALUE " + data[k] + " COLUMN INDEX "
+//					+ getColumnIndexFromDataValue(k) + " ROW INDEX "
+//					+ last_column);
+//		}
 //	}
 
 	private int getColumnIndexFromDataValue(int data_index) {
@@ -100,12 +91,16 @@ public class BIOMCompressedSparseRowMatrix implements Iterable<ArrayList>{
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/** 
+	 * 
+	 * An iterator to go throw the CSR matrix
+	 * 
 	 * @see java.lang.Iterable#iterator()
 	 */
 	public Iterator iterator() {
 		return new CSRITerator();
 	}
+	
 	private class CSRITerator implements Iterator <BIOMCellValue>{
 		private int position = 0;
 		private int last_column = 0;

@@ -32,18 +32,18 @@ public enum BIOMSPARQLQueries {
 	}
 	public String generateQuery (){
 		String sparql_query = null;
-		if (this.query_name.equals("GetBIOMTableInstance")){
-			sparql_query = 
-					generateSPARQLPREFIX("rdf", NS.RDF.getNS()) +
-					generateSPARQLPREFIX("rdfs", NS.RDFS.getNS()) +
-					generateSPARQLPREFIX("biom_res", NS.BIOM_RES.getNS()) +
-					"SELECT ?ind " +
-					"WHERE { " +
-					"?ind rdf:type ?object . " +
-					"?object rdfs:subClassOf biom_res:BIOM_000004 " +
-					"}"
-					;
-		}
+//		if (this.query_name.equals("GetBIOMTableInstance")){
+//			sparql_query = 
+//					generateSPARQLPREFIX("rdf", NS.RDF.getNS()) +
+//					generateSPARQLPREFIX("rdfs", NS.RDFS.getNS()) +
+//					generateSPARQLPREFIX("biom_res", NS.BIOM_RES.getNS()) +
+//					"SELECT ?ind " +
+//					"WHERE { " +
+//					"?ind rdf:type ?object . " +
+//					"?object rdfs:subClassOf biom_res:BIOM_000004 " +
+//					"}"
+//					;
+//		}
 		return sparql_query;
 	}
 	private static String generateSPARQLPREFIX (String prefix, String ns){

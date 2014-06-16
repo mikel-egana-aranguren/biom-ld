@@ -18,9 +18,12 @@
 package eu.genomic.resources.biom2ld.Storage;
 
 /**
+ * 
+ * Common namespaces: OWL, RDF, ...
+ * 
  * @author Mikel Egaña Aranguren
- * @version
- * @date 
+ * @version 0.0.1
+ * @date 2014 eka 16
  */
 public enum NS {
 	RDF ("http://www.w3.org/1999/02/22-rdf-syntax-ns#"),
@@ -35,11 +38,7 @@ public enum NS {
 		this.ns_uri=ns;
 	}
 	
-	public String getNS(){
+	public String getURI(){
 		return this.ns_uri;
 	}
-	public static void main(String[] args) {
-        System.out.println(NS.RDF.getNS());
-        System.out.println(NS.OWL.getNS());
-    }
 }

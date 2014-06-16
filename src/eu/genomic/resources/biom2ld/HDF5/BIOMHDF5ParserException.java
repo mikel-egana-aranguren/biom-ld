@@ -19,14 +19,15 @@ package eu.genomic.resources.biom2ld.HDF5;
 
 /**
  * @author Mikel Egaña Aranguren
- * @version
- * @date 
+ * @version 0.0.1
+ * @date 2014 eka 16
  */
 public class BIOMHDF5ParserException extends Exception {
 
 	/**
 	 * 
 	 */
+
 	public BIOMHDF5ParserException() {
 	}
 

@@ -22,8 +22,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
+
 import eu.genomic.resources.biom2ld.Storage.BIOMCellValue;
 import eu.genomic.resources.biom2ld.Storage.BIOMCompressedSparseRowMatrix;
+import eu.genomic.resources.biom2ld.Storage.BIOM_URI;
+import eu.genomic.resources.biom2ld.Storage.JenaOnMemoryStore;
 import eu.genomic.resources.biom2ld.Storage.Store;
 import ncsa.hdf.object.Dataset;
 import ncsa.hdf.object.Group;
@@ -31,11 +35,11 @@ import ncsa.hdf.object.HObject;
 
 /**
  * 
- * A parser for the dataset observation/matrix/data
+ * A parser for the group observation/matrix
  * 
  * @author Mikel Egaña Aranguren
  * @version 0.0.1
- * @date 
+ * @date  2014 eka 16
  */
 public class HDF5GroupObservationParser extends HDF5HObjectParser {
 
@@ -49,32 +53,60 @@ public class HDF5GroupObservationParser extends HDF5HObjectParser {
 	@Override
 	public void execute(HObject hobject, Store store) throws Exception {
 		Group obs_matrix = (Group) hobject;
+
 		Dataset data_ds = (Dataset) obs_matrix.getMemberList().get(0);
 		double [] data = (double[]) data_ds.getData();
-//		for (int k = 0; k < data.length; k++) {
-//			System.out.println(data[k]);
-//		}
-		
+
 		Dataset indices = (Dataset) obs_matrix.getMemberList().get(1);
 		int [] indices_data = (int[]) indices.getData();
-//		for (int k = 0; k < indices_data.length; k++) {
-//			System.out.println(indices_data[k]);
-//		}
 		
 		Dataset indptr = (Dataset) obs_matrix.getMemberList().get(2);
 		int [] indptr_data = (int[]) indptr.getData();
-//		for (int k = 0; k < indptr_data.length; k++) {
-//			System.out.println(indptr_data[k]);
-//		}
 		
 		BIOMCompressedSparseRowMatrix CSR = new BIOMCompressedSparseRowMatrix(data, indices_data, indptr_data);
-//		CSR.walkCSR();
+
 		Iterator<BIOMCellValue> CSRIterator = CSR.iterator();
 		while (CSRIterator.hasNext()){
 			BIOMCellValue result = CSRIterator.next();
-			System.out.println(result.getValue());
-			System.out.println(result.getRow_index());
-			System.out.println(result.getCol_index());			
+			Double value = result.getValue();
+			String observation = store.get_observation_name_by_id(result.getRow_index());
+			String sample = store.get_sample_name_by_id(result.getCol_index());
+			
+//			System.out.println(store.get_BIOM_table_instance_URI());
+//			System.out.println(BIOM_URI.Observation.getURI());
+//			System.out.println(store.get_BIOM_table_instance_URI()+"/"+observation);
+			
+			
+			((JenaOnMemoryStore)store).addTriple(
+					store.get_BIOM_table_instance_URI(), 
+					BIOM_URI.Observation.getURI(), 
+					store.get_BIOM_table_instance_URI()+"/"+observation);
+			
+			((JenaOnMemoryStore)store).addTriple(
+					store.get_BIOM_table_instance_URI(), 
+					BIOM_URI.Sample.getURI(), 
+					store.get_BIOM_table_instance_URI()+"/"+sample);
+			
+			((JenaOnMemoryStore)store).addTriple(
+					store.get_BIOM_table_instance_URI()+"/"+sample+observation, 
+					BIOM_URI.RefersToObservation.getURI(), 
+					store.get_BIOM_table_instance_URI()+"/"+observation);
+			
+			((JenaOnMemoryStore)store).addTriple(
+					store.get_BIOM_table_instance_URI()+"/"+sample+observation, 
+					BIOM_URI.RefersToSample.getURI(), 
+					store.get_BIOM_table_instance_URI()+"/"+sample);
+			
+			((JenaOnMemoryStore)store).addLiteral(
+					store.get_BIOM_table_instance_URI()+"/"+sample+observation, 
+					BIOM_URI.NumericalValue.getURI(), 
+					value.toString(),
+					XSDDatatype.XSDdouble);
+			
+			
+//			System.out.println(result.getValue());
+//			System.out.println(store.get_observation_name_by_id(result.getRow_index()));
+//			System.out.println(store.get_sample_name_by_id(result.getCol_index()));			
 		}
 
 	}

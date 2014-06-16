@@ -1,0 +1,433 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:resource2="http://semanticscience.org/resource/"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:terms="http://purl.org/dc/terms/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:resource="http://www.biom-format.org/resource/"
+    xmlns="http://www.biom-format.org/ontology/biom.owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+  <owl:Ontology rdf:about="http://www.biom-format.org/ontology/biom.owl">
+    <owl:versionIRI rdf:resource="http://www.biom-format.org/ontology/biom-v0.0.1.owl"/>
+    <owl:imports rdf:resource="http://semanticscience.org/ontology/sio.owl"/>
+    <owl:versionInfo xml:lang="en">0.0.1
+</owl:versionInfo>
+    <terms:creator>Mikel Egaña Aranguren</terms:creator>
+    <rdfs:comment xml:lang="en">Direct translation of the BIOM file format to OWL (http://biom-format.org/documentation/format_versions/biom-2.0.html).
+
+This ontology offers a general schema for BIOM data. A BIOM table would be an instance of any of the BIOMTable's subclasses.
+
+BIOM attributes not mapped directly:
+
+- format and format_url, since they would (redundantly) point to this ontology.
+
+- id: the id of the table would be the (preferably HTTP resolvable) URI of the biom table instance.
+
+- type: this information is codified as the Table Class, ie the biom table instance belongs to its "type" class (OTU table, Gene table, ...).
+
+Most of the HDF5 groups and datasets are not mapped, since are not necessary: only the data and indices datasets for samples and observations are mapped.
+
+The metadata mapping is dependant on each table, since any JSON object can be defined. The metadata should, in any case, refer to the observation and sample instances (see "is about" property).
+
+For an example of the mapping, see biom_example_table.owl</rdfs:comment>
+    <terms:license rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+    >http://creativecommons.org/licenses/by/3.0/</terms:license>
+  </owl:Ontology>
+  <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000056">
+    <rdfs:comment xml:lang="en">Any individual of this class will be regarded by the BIOM2RDF parser as a mapping of an entity of the metadata to a Linked Data URI.
+
+For example, the JSON metadata entities "Description": "Human gut" are mapped by the following instances:</rdfs:comment>
+    <rdfs:label xml:lang="en">BIOMTable Metadata Entity Mapping</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000008">
+    <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:intersectionOf rdf:parseType="Collection">
+              <rdf:Description rdf:about="http://semanticscience.org/resource/SIO_010035"/>
+              <owl:Restriction>
+                <owl:someValuesFrom rdf:resource="http://semanticscience.org/resource/SIO_010035"/>
+                <owl:onProperty rdf:resource="http://semanticscience.org/resource/SIO_000558"/>
+              </owl:Restriction>
+            </owl:intersectionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <rdf:Description rdf:about="http://semanticscience.org/resource/SIO_000332">
+            <rdfs:comment xml:lang="en">This should be used for linking Samples and Observations with their metadata, translated from JSON. For example: 
+
+metadata_1 is about Sample1
+metadata_1 taxon Homo sapiens
+metadata_1 location gut
+...
+
+Since metadata associated with Samples and Observations is the most interesting bit of the table, the metadata should use standard vocabularies and link to the Linked Open Data cloud. </rdfs:comment>
+          </rdf:Description>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000004"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">OrthologTable</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000006">
+    <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://semanticscience.org/resource/SIO_010035"/>
+        <owl:onProperty rdf:resource="http://semanticscience.org/resource/SIO_000332"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000004"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">GeneTable</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000004">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="http://www.biom-format.org/resource/BIOM_000016"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">BIOMTable</rdfs:label>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000005"/>
+          <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000006"/>
+          <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000007"/>
+          <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000008"/>
+          <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000009"/>
+          <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000010"/>
+          <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000011"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:comment xml:lang="en">A BIOM table is an instance of any of the subclasses of this class. A BIOM table instance maps to an HDF5 file</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="http://www.biom-format.org/resource/BIOM_000017"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="http://www.biom-format.org/resource/BIOM_000019"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="http://www.biom-format.org/resource/BIOM_000020"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="http://www.biom-format.org/resource/BIOM_000018"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000007">
+    <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Restriction>
+            <owl:allValuesFrom rdf:resource="http://semanticscience.org/resource/SIO_010532"/>
+            <owl:onProperty rdf:resource="http://semanticscience.org/resource/SIO_000062"/>
+          </owl:Restriction>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://semanticscience.org/resource/SIO_000332"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.biom-format.org/resource/BIOM_000004"/>
+    <rdfs:label xml:lang="en">MetaboliteTable</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://purl.uniprot.org/core/Taxon">
+    <rdfs:isDefinedBy rdf:resource="http://www.uniprot.org/core/"/>
+    <rdfs:label xml:lang="en">Taxon</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000009">
+    <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000013"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://semanticscience.org/resource/SIO_000332"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.biom-format.org/resource/BIOM_000004"/>
+    <rdfs:label xml:lang="en">OTUtable</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000013">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://purl.obolibrary.org/obo/CDAO_0000138"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">Operational Taxonomic Unit</rdfs:label>
+    <rdfs:label xml:lang="en">OTU</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000010">
+    <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://semanticscience.org/resource/SIO_001107"/>
+        <owl:onProperty rdf:resource="http://semanticscience.org/resource/SIO_000332"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.biom-format.org/resource/BIOM_000004"/>
+    <rdfs:label xml:lang="en">PathwayTable</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000005">
+    <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://semanticscience.org/resource/SIO_000017"/>
+        <owl:onProperty rdf:resource="http://semanticscience.org/resource/SIO_000332"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.biom-format.org/resource/BIOM_000004"/>
+    <rdfs:label xml:lang="en">FunctionTable</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://purl.obolibrary.org/obo/CDAO_0000138">
+    <rdfs:isDefinedBy rdf:resource="http://purl.bioontology.org/ontology/CDAO"/>
+    <rdfs:label xml:lang="en">TU</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000011">
+    <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://purl.uniprot.org/core/Taxon"/>
+        <owl:onProperty rdf:resource="http://semanticscience.org/resource/SIO_000332"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.biom-format.org/resource/BIOM_000004"/>
+    <rdfs:label xml:lang="en">TaxonTable</rdfs:label>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="http://www.biom-format.org/resource/BIOM_000026">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="http://www.biom-format.org/resource/BIOM_000024"/>
+    </rdfs:subPropertyOf>
+    <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
+    <rdfs:label xml:lang="en">refers_to_sample</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.biom-format.org/resource/BIOM_000021">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="http://www.biom-format.org/resource/BIOM_000023"/>
+    </rdfs:subPropertyOf>
+    <rdfs:domain rdf:resource="http://www.biom-format.org/resource/BIOM_000004"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
+    <rdfs:label xml:lang="en">observation</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.biom-format.org/resource/BIOM_000024">
+    <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
+    <rdfs:label xml:lang="en">refers_to_dimension</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.biom-format.org/resource/BIOM_000023">
+    <rdfs:domain rdf:resource="http://www.biom-format.org/resource/BIOM_000004"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
+    <rdfs:label xml:lang="en">dimension</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.biom-format.org/resource/BIOM_000025">
+    <rdfs:subPropertyOf rdf:resource="http://www.biom-format.org/resource/BIOM_000024"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
+    <rdfs:label xml:lang="en">refers_to_observation</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.biom-format.org/resource/BIOM_000047">
+    <rdfs:comment xml:lang="en">Added only as an example of how to model metadata</rdfs:comment>
+    <rdfs:label xml:lang="en">taxon</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.biom-format.org/resource/BIOM_000022">
+    <rdfs:subPropertyOf rdf:resource="http://www.biom-format.org/resource/BIOM_000023"/>
+    <rdfs:domain rdf:resource="http://www.biom-format.org/resource/BIOM_000004"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
+    <rdfs:label xml:lang="en">sample</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="http://www.biom-format.org/resource/BIOM_000017">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="http://www.biom-format.org/resource/BIOM_000004"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
+    <rdfs:label xml:lang="en">generated-by</rdfs:label>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="http://www.biom-format.org/resource/BIOM_000027">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
+    <rdfs:subPropertyOf rdf:resource="http://semanticscience.org/resource/SIO_000300"/>
+    <rdfs:comment xml:lang="en">the actual BIOM matrix data</rdfs:comment>
+    <rdfs:label xml:lang="en">numerical value</rdfs:label>
+  </owl:DatatypeProperty>
+  <owl:FunctionalProperty rdf:about="http://www.biom-format.org/resource/BIOM_000016">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:domain rdf:resource="http://www.biom-format.org/resource/BIOM_000004"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
+    <rdfs:label xml:lang="en">creation-date</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.biom-format.org/resource/BIOM_000020">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
+    <rdfs:domain rdf:resource="http://www.biom-format.org/resource/BIOM_000004"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
+    <rdfs:label xml:lang="en">number of Samples (Columns)</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.biom-format.org/resource/BIOM_000019">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
+    <rdfs:domain rdf:resource="http://www.biom-format.org/resource/BIOM_000004"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
+    <rdfs:label xml:lang="en">number of Observations (Rows)</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.biom-format.org/resource/BIOM_000018">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
+    <rdfs:domain rdf:resource="http://www.biom-format.org/resource/BIOM_000004"/>
+    <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
+    <rdfs:label xml:lang="en">number of non-zero elements</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <rdf:Description rdf:about="http://genomic-resources.eu/biom_table_1/GG_OTU_3Sample3">
+    <resource:BIOM_000027 rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
+    >1.0</resource:BIOM_000027>
+    <resource:BIOM_000026 rdf:resource="http://genomic-resources.eu/biom_table_1/GG_OTU_3"/>
+    <resource:BIOM_000025 rdf:resource="http://genomic-resources.eu/biom_table_1/Sample3"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://genomic-resources.eu/biom_table_1/GG_OTU_1Sample2">
+    <resource:BIOM_000027 rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
+    >5.0</resource:BIOM_000027>
+    <resource:BIOM_000026 rdf:resource="http://genomic-resources.eu/biom_table_1/GG_OTU_1"/>
+    <resource:BIOM_000025 rdf:resource="http://genomic-resources.eu/biom_table_1/Sample2"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://genomic-resources.eu/biom_table_1/nullSample3">
+    <resource:BIOM_000027 rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
+    >2.0</resource:BIOM_000027>
+    <resource:BIOM_000026 rdf:resource="http://genomic-resources.eu/biom_table_1/null"/>
+    <resource:BIOM_000025 rdf:resource="http://genomic-resources.eu/biom_table_1/Sample3"/>
+  </rdf:Description>
+  <owl:AnnotationProperty rdf:about="http://www.biom-format.org/resource/BIOM_000058">
+    <rdfs:label xml:lang="en">BIOM metadata entity id</rdfs:label>
+  </owl:AnnotationProperty>
+  <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/license"/>
+  <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/creator"/>
+  <rdf:Description rdf:about="http://genomic-resources.eu/biom_table_1/GG_OTU_2Sample2">
+    <resource:BIOM_000027 rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
+    >1.0</resource:BIOM_000027>
+    <resource:BIOM_000026 rdf:resource="http://genomic-resources.eu/biom_table_1/GG_OTU_2"/>
+    <resource:BIOM_000025 rdf:resource="http://genomic-resources.eu/biom_table_1/Sample2"/>
+  </rdf:Description>
+  <resource:BIOM_000009 rdf:about="http://genomic-resources.eu/biom_table_1">
+    <resource:BIOM_000022 rdf:resource="http://genomic-resources.eu/biom_table_1/GG_OTU_1"/>
+    <resource:BIOM_000021 rdf:resource="http://genomic-resources.eu/biom_table_1/Sample1"/>
+    <resource:BIOM_000022 rdf:resource="http://genomic-resources.eu/biom_table_1/GG_OTU_3"/>
+    <resource:BIOM_000022 rdf:resource="http://genomic-resources.eu/biom_table_1/GG_OTU_2"/>
+    <resource:BIOM_000021 rdf:resource="http://genomic-resources.eu/biom_table_1/Sample4"/>
+    <resource:BIOM_000017 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >example</resource:BIOM_000017>
+    <resource:BIOM_000021 rdf:resource="http://genomic-resources.eu/biom_table_1/Sample5"/>
+    <resource:BIOM_000021 rdf:resource="http://genomic-resources.eu/biom_table_1/Sample3"/>
+    <resource:BIOM_000022 rdf:resource="http://genomic-resources.eu/biom_table_1/null"/>
+    <resource:BIOM_000022 rdf:resource="http://genomic-resources.eu/biom_table_1/GG_OTU_4"/>
+    <resource:BIOM_000016 rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2014-05-13T14:50:32.052446</resource:BIOM_000016>
+    <resource:BIOM_000022 rdf:resource="http://genomic-resources.eu/biom_table_1/GG_OTU_5"/>
+    <resource:BIOM_000020 rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+    >6</resource:BIOM_000020>
+    <resource:BIOM_000019 rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+    >5</resource:BIOM_000019>
+    <resource:BIOM_000018 rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+    >15</resource:BIOM_000018>
+    <resource:BIOM_000021 rdf:resource="http://genomic-resources.eu/biom_table_1/Sample2"/>
+  </resource:BIOM_000009>
+  <rdf:Description rdf:about="http://genomic-resources.eu/biom_table_1/nullSample4">
+    <resource:BIOM_000027 rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
+    >1.0</resource:BIOM_000027>
+    <resource:BIOM_000026 rdf:resource="http://genomic-resources.eu/biom_table_1/null"/>
+    <resource:BIOM_000025 rdf:resource="http://genomic-resources.eu/biom_table_1/Sample4"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://genomic-resources.eu/biom_table_1/GG_OTU_3Sample5">
+    <resource:BIOM_000027 rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
+    >1.0</resource:BIOM_000027>
+    <resource:BIOM_000026 rdf:resource="http://genomic-resources.eu/biom_table_1/GG_OTU_3"/>
+    <resource:BIOM_000025 rdf:resource="http://genomic-resources.eu/biom_table_1/Sample5"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://genomic-resources.eu/biom_table_1/GG_OTU_4Sample2">
+    <resource:BIOM_000027 rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
+    >2.0</resource:BIOM_000027>
+    <resource:BIOM_000026 rdf:resource="http://genomic-resources.eu/biom_table_1/GG_OTU_4"/>
+    <resource:BIOM_000025 rdf:resource="http://genomic-resources.eu/biom_table_1/Sample2"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://genomic-resources.eu/biom_table_1/GG_OTU_1Sample4">
+    <resource:BIOM_000027 rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
+    >2.0</resource:BIOM_000027>
+    <resource:BIOM_000026 rdf:resource="http://genomic-resources.eu/biom_table_1/GG_OTU_1"/>
+    <resource:BIOM_000025 rdf:resource="http://genomic-resources.eu/biom_table_1/Sample4"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://genomic-resources.eu/biom_table_1/GG_OTU_2Sample5">
+    <resource:BIOM_000027 rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
+    >1.0</resource:BIOM_000027>
+    <resource:BIOM_000026 rdf:resource="http://genomic-resources.eu/biom_table_1/GG_OTU_2"/>
+    <resource:BIOM_000025 rdf:resource="http://genomic-resources.eu/biom_table_1/Sample5"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://genomic-resources.eu/biom_table_1/GG_OTU_3Sample1">
+    <resource:BIOM_000027 rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
+    >1.0</resource:BIOM_000027>
+    <resource:BIOM_000026 rdf:resource="http://genomic-resources.eu/biom_table_1/GG_OTU_3"/>
+    <resource:BIOM_000025 rdf:resource="http://genomic-resources.eu/biom_table_1/Sample1"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://genomic-resources.eu/biom_table_1/GG_OTU_3Sample4">
+    <resource:BIOM_000027 rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
+    >1.0</resource:BIOM_000027>
+    <resource:BIOM_000026 rdf:resource="http://genomic-resources.eu/biom_table_1/GG_OTU_3"/>
+    <resource:BIOM_000025 rdf:resource="http://genomic-resources.eu/biom_table_1/Sample4"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://genomic-resources.eu/biom_table_1/GG_OTU_4Sample3">
+    <resource:BIOM_000027 rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
+    >4.0</resource:BIOM_000027>
+    <resource:BIOM_000026 rdf:resource="http://genomic-resources.eu/biom_table_1/GG_OTU_4"/>
+    <resource:BIOM_000025 rdf:resource="http://genomic-resources.eu/biom_table_1/Sample3"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://genomic-resources.eu/biom_table_1/nullSample2">
+    <resource:BIOM_000027 rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
+    >1.0</resource:BIOM_000027>
+    <resource:BIOM_000026 rdf:resource="http://genomic-resources.eu/biom_table_1/null"/>
+    <resource:BIOM_000025 rdf:resource="http://genomic-resources.eu/biom_table_1/Sample2"/>
+  </rdf:Description>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000005"/>
+      <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000006"/>
+      <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000007"/>
+      <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000008"/>
+      <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000009"/>
+      <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000010"/>
+      <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000011"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <rdf:Description rdf:about="http://genomic-resources.eu/biom_table_1/GG_OTU_2Sample4">
+    <resource:BIOM_000027 rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
+    >1.0</resource:BIOM_000027>
+    <resource:BIOM_000026 rdf:resource="http://genomic-resources.eu/biom_table_1/GG_OTU_2"/>
+    <resource:BIOM_000025 rdf:resource="http://genomic-resources.eu/biom_table_1/Sample4"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://genomic-resources.eu/biom_table_1/GG_OTU_5Sample2">
+    <resource:BIOM_000027 rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
+    >3.0</resource:BIOM_000027>
+    <resource:BIOM_000026 rdf:resource="http://genomic-resources.eu/biom_table_1/GG_OTU_5"/>
+    <resource:BIOM_000025 rdf:resource="http://genomic-resources.eu/biom_table_1/Sample2"/>
+  </rdf:Description>
+</rdf:RDF>

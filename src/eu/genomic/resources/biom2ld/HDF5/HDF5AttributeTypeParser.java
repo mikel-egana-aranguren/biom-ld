@@ -26,10 +26,14 @@ import eu.genomic.resources.biom2ld.Storage.JenaOnMemoryStore;
 import eu.genomic.resources.biom2ld.Storage.NS;
 import eu.genomic.resources.biom2ld.Storage.Store;
 
+
 /**
+ * 
+ * A parser for the BIOM attribute type
+ * 
  * @author Mikel Egaña Aranguren
- * @version
- * @date
+ * @version 0.0.1
+ * @date 2014 eka 16
  */
 public class HDF5AttributeTypeParser extends HDF5HObjectParser {
 
@@ -79,7 +83,7 @@ public class HDF5AttributeTypeParser extends HDF5HObjectParser {
 			if (biom_table_uri != null) {
 				((JenaOnMemoryStore) store).addTriple(
 						((JenaOnMemoryStore) store)
-								.get_BIOM_table_instance_URI(), NS.RDF.getNS()
+								.get_BIOM_table_instance_URI(), NS.RDF.getURI()
 								+ "type", biom_table_uri);
 			}
 		}
