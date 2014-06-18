@@ -45,11 +45,9 @@ public class HDF5File {
 		h5file = new H5File(filePath, HDF5Constants.H5F_ACC_RDONLY);
 	}
 
-//	/**
-//	 * @return the HDF5 file path
-//	 */
-//	public final String getFilePath() {
-//		return filePath;
+//	public static void main (String[] args){
+//		H5File compressed = new H5File("/home/mikel/UPV-EHU/Eclipse_Workspace/biom-ld/biom-format/tests/bench_tables/10x10x0.100_bench_hdf5.biom.gz", HDF5Constants.H5F_ACC_RDONLY);
+//		System.out.println(compressed.getAbsolutePath());
 //	}
 
 	/**
@@ -70,9 +68,7 @@ public class HDF5File {
 	 * @return
 	 * @throws Exception
 	 */
-//	public Dataset getDataset (String datasetPath) throws Exception {
-//		return (Dataset) h5file.get(datasetPath);
-//	}
+
 	public HObject getObject (String objectPath) throws Exception {
 		return h5file.get(objectPath);
 	}

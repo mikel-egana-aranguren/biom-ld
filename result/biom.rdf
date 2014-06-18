@@ -89,13 +89,14 @@ Since metadata associated with Samples and Observations is the most interesting 
   <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000004">
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
         <owl:onProperty>
-          <owl:FunctionalProperty rdf:about="http://www.biom-format.org/resource/BIOM_000016"/>
+          <owl:FunctionalProperty rdf:about="http://www.biom-format.org/resource/BIOM_000020"/>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:label xml:lang="en">BIOMTable</rdfs:label>
+    <rdfs:comment xml:lang="en">A BIOM table is an instance of any of the subclasses of this class. A BIOM table instance maps to an HDF5 file</rdfs:comment>
     <owl:equivalentClass>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -109,7 +110,7 @@ Since metadata associated with Samples and Observations is the most interesting 
         </owl:unionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <rdfs:comment xml:lang="en">A BIOM table is an instance of any of the subclasses of this class. A BIOM table instance maps to an HDF5 file</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
@@ -126,20 +127,19 @@ Since metadata associated with Samples and Observations is the most interesting 
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
-        <owl:onProperty>
-          <owl:FunctionalProperty rdf:about="http://www.biom-format.org/resource/BIOM_000020"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
         <owl:onProperty>
           <owl:FunctionalProperty rdf:about="http://www.biom-format.org/resource/BIOM_000018"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="http://www.biom-format.org/resource/BIOM_000016"/>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -353,6 +353,17 @@ Since metadata associated with Samples and Observations is the most interesting 
     >15</resource:BIOM_000018>
     <resource:BIOM_000021 rdf:resource="http://genomic-resources.eu/biom_table_1/Sample2"/>
   </resource:BIOM_000009>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000005"/>
+      <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000006"/>
+      <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000007"/>
+      <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000008"/>
+      <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000009"/>
+      <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000010"/>
+      <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000011"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
   <rdf:Description rdf:about="http://genomic-resources.eu/biom_table_1/nullSample4">
     <resource:BIOM_000027 rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
     >1.0</resource:BIOM_000027>
@@ -407,17 +418,6 @@ Since metadata associated with Samples and Observations is the most interesting 
     <resource:BIOM_000026 rdf:resource="http://genomic-resources.eu/biom_table_1/null"/>
     <resource:BIOM_000025 rdf:resource="http://genomic-resources.eu/biom_table_1/Sample2"/>
   </rdf:Description>
-  <owl:AllDisjointClasses>
-    <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000005"/>
-      <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000006"/>
-      <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000007"/>
-      <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000008"/>
-      <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000009"/>
-      <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000010"/>
-      <owl:Class rdf:about="http://www.biom-format.org/resource/BIOM_000011"/>
-    </owl:members>
-  </owl:AllDisjointClasses>
   <rdf:Description rdf:about="http://genomic-resources.eu/biom_table_1/GG_OTU_2Sample4">
     <resource:BIOM_000027 rdf:datatype="http://www.w3.org/2001/XMLSchema#double"
     >1.0</resource:BIOM_000027>
