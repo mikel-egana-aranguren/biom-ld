@@ -21,7 +21,7 @@ import java.util.List;
 
 import ncsa.hdf.object.Attribute;
 import ncsa.hdf.object.HObject;
-import eu.genomic.resources.biom2ld.Storage.BIOM_URI;
+import eu.genomic.resources.biom2ld.Storage.BIOMO_URI;
 import eu.genomic.resources.biom2ld.Storage.JenaOnMemoryStore;
 import eu.genomic.resources.biom2ld.Storage.NS;
 import eu.genomic.resources.biom2ld.Storage.Store;
@@ -62,19 +62,19 @@ public class HDF5AttributeTypeParser extends HDF5HObjectParser {
 					.toLowerCase();
 			String biom_table_uri = null;
 			if (normalised_table_type_name.equals("otu")) {
-				biom_table_uri = BIOM_URI.OTUTable.getURI();
+				biom_table_uri = BIOMO_URI.OTUTable.getURI();
 			} else if (normalised_table_type_name.equals("pathway")) {
-				biom_table_uri = BIOM_URI.PathwayTable.getURI();
+				biom_table_uri = BIOMO_URI.PathwayTable.getURI();
 			} else if (normalised_table_type_name.equals("function")) {
-				biom_table_uri = BIOM_URI.FunctionTable.getURI();
+				biom_table_uri = BIOMO_URI.FunctionTable.getURI();
 			} else if (normalised_table_type_name.equals("ortholog")) {
-				biom_table_uri = BIOM_URI.OrthologTable.getURI();
+				biom_table_uri = BIOMO_URI.OrthologTable.getURI();
 			} else if (normalised_table_type_name.equals("Gene")) {
-				biom_table_uri = BIOM_URI.GeneTable.getURI();
+				biom_table_uri = BIOMO_URI.GeneTable.getURI();
 			} else if (normalised_table_type_name.equals("Metabolite")) {
-				biom_table_uri = BIOM_URI.MetaboliteTable.getURI();
+				biom_table_uri = BIOMO_URI.MetaboliteTable.getURI();
 			} else if (normalised_table_type_name.equals("Taxon")) {
-				biom_table_uri = BIOM_URI.TaxonTable.getURI();
+				biom_table_uri = BIOMO_URI.TaxonTable.getURI();
 			} else {
 				throw new BIOMHDF5ParserException(
 						"Table type (otu, pathway, function, ortholog, gene, metabolite, taxon) not found in HDF5 file");

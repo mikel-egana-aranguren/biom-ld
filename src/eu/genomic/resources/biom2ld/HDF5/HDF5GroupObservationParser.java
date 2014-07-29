@@ -26,7 +26,7 @@ import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 
 import eu.genomic.resources.biom2ld.Storage.BIOMCellValue;
 import eu.genomic.resources.biom2ld.Storage.BIOMCompressedSparseRowMatrix;
-import eu.genomic.resources.biom2ld.Storage.BIOM_URI;
+import eu.genomic.resources.biom2ld.Storage.BIOMO_URI;
 import eu.genomic.resources.biom2ld.Storage.JenaOnMemoryStore;
 import eu.genomic.resources.biom2ld.Storage.Store;
 import ncsa.hdf.object.Dataset;
@@ -79,27 +79,27 @@ public class HDF5GroupObservationParser extends HDF5HObjectParser {
 			
 			((JenaOnMemoryStore)store).addTriple(
 					store.get_BIOM_table_instance_URI(), 
-					BIOM_URI.Observation.getURI(), 
-					store.get_BIOM_table_instance_URI()+"/"+observation);
+					BIOMO_URI.Observation.getURI(), 
+					store.get_BIOM_table_instance_URI()+"/observation/"+observation);
 			
 			((JenaOnMemoryStore)store).addTriple(
 					store.get_BIOM_table_instance_URI(), 
-					BIOM_URI.Sample.getURI(), 
-					store.get_BIOM_table_instance_URI()+"/"+sample);
+					BIOMO_URI.Sample.getURI(), 
+					store.get_BIOM_table_instance_URI()+"/sample/"+sample);
 			
 			((JenaOnMemoryStore)store).addTriple(
-					store.get_BIOM_table_instance_URI()+"/"+sample+observation, 
-					BIOM_URI.RefersToObservation.getURI(), 
-					store.get_BIOM_table_instance_URI()+"/"+observation);
+					store.get_BIOM_table_instance_URI()+"/cell/"+sample+observation, 
+					BIOMO_URI.RefersToObservation.getURI(), 
+					store.get_BIOM_table_instance_URI()+"/observation/"+observation);
 			
 			((JenaOnMemoryStore)store).addTriple(
-					store.get_BIOM_table_instance_URI()+"/"+sample+observation, 
-					BIOM_URI.RefersToSample.getURI(), 
-					store.get_BIOM_table_instance_URI()+"/"+sample);
+					store.get_BIOM_table_instance_URI()+"/cell/"+sample+observation, 
+					BIOMO_URI.RefersToSample.getURI(), 
+					store.get_BIOM_table_instance_URI()+"/sample/"+sample);
 			
 			((JenaOnMemoryStore)store).addLiteral(
-					store.get_BIOM_table_instance_URI()+"/"+sample+observation, 
-					BIOM_URI.NumericalValue.getURI(), 
+					store.get_BIOM_table_instance_URI()+"/cell/"+sample+observation, 
+					BIOMO_URI.NumericalValue.getURI(), 
 					value.toString(),
 					XSDDatatype.XSDdouble);
 			

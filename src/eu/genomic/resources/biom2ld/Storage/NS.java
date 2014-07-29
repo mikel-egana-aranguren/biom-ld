@@ -30,7 +30,7 @@ public enum NS {
 	OWL ("http://www.w3.org/2002/07/owl#"),
 	XSD ("http://www.w3.org/2001/XMLSchema#"),
 	RDFS ("http://www.w3.org/2000/01/rdf-schema#"),
-	BIOM_RES ("http://www.biom-format.org/resource/");
+	BIOMO_RES ("http://purl.oclc.org/BIOMO/resource/");
 	
 	private String ns_uri;
 	

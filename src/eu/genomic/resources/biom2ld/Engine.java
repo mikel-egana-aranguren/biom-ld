@@ -32,7 +32,7 @@ import eu.genomic.resources.biom2ld.HDF5.HDF5File;
 import eu.genomic.resources.biom2ld.HDF5.HDF5GroupObservationParser;
 import eu.genomic.resources.biom2ld.HDF5.HDF5HObjectParser;
 import eu.genomic.resources.biom2ld.HDF5.HDF5DatasetSampleIDsParser;
-import eu.genomic.resources.biom2ld.Storage.BIOM_URI;
+import eu.genomic.resources.biom2ld.Storage.BIOMO_URI;
 import eu.genomic.resources.biom2ld.Storage.JenaOnMemoryStore;
 import eu.genomic.resources.biom2ld.Storage.NS;
 

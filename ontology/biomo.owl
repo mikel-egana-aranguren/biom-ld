@@ -6,22 +6,22 @@
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
     <!ENTITY resource2 "http://semanticscience.org/resource/" >
-    <!ENTITY resource "http://www.biom-format.org/resource/" >
+    <!ENTITY resource "http://purl.oclc.org/BIOMO/resource/" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
 ]>
 
 
-<rdf:RDF xmlns="http://www.biom-format.org/ontology/biom.owl#"
-     xml:base="http://www.biom-format.org/ontology/biom.owl"
+<rdf:RDF xmlns="http://purl.oclc.org/BIOMO/ontology/biomo.owl#"
+     xml:base="http://purl.oclc.org/BIOMO/ontology/biomo.owl"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:terms="http://purl.org/dc/terms/"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:resource="http://www.biom-format.org/resource/"
+     xmlns:resource="http://purl.oclc.org/BIOMO/resource/"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:resource2="http://semanticscience.org/resource/">
-    <owl:Ontology rdf:about="http://www.biom-format.org/ontology/biom.owl">
+    <owl:Ontology rdf:about="http://purl.oclc.org/BIOMO/ontology/biomo.owl">
         <terms:license rdf:datatype="&xsd;anyURI">http://creativecommons.org/licenses/by/3.0/</terms:license>
         <rdfs:comment xml:lang="en">Direct translation of the BIOM file format to OWL (http://biom-format.org/documentation/format_versions/biom-2.0.html).
 
@@ -39,12 +39,12 @@ Most of the HDF5 groups and datasets are not mapped, since are not necessary: on
 
 The metadata mapping is dependant on each table, since any JSON object can be defined. The metadata should, in any case, refer to the observation and sample instances (see &quot;is about&quot; property).
 
-For an example of the mapping, see biom_example_table.owl</rdfs:comment>
+For an example of the mapping, see BIOM_example_table.owl</rdfs:comment>
         <terms:creator>Mikel Egaña Aranguren</terms:creator>
         <owl:versionInfo xml:lang="en">0.0.1
 </owl:versionInfo>
         <owl:imports rdf:resource="http://semanticscience.org/ontology/sio.owl"/>
-        <owl:versionIRI rdf:resource="http://www.biom-format.org/ontology/biom-v0.0.1.owl"/>
+        <owl:versionIRI rdf:resource="http://purl.oclc.org/BIOMO/ontology/biomo-v0.0.1.owl"/>
     </owl:Ontology>
     
 
@@ -72,9 +72,9 @@ For an example of the mapping, see biom_example_table.owl</rdfs:comment>
     
 
 
-    <!-- http://www.biom-format.org/resource/BIOM_000058 -->
+    <!-- http://purl.oclc.org/BIOMO/resource/BIOMO_000058 -->
 
-    <owl:AnnotationProperty rdf:about="&resource;BIOM_000058">
+    <owl:AnnotationProperty rdf:about="&resource;BIOMO_000058">
         <rdfs:label xml:lang="en">BIOM metadata entity id</rdfs:label>
     </owl:AnnotationProperty>
     
@@ -106,70 +106,70 @@ Since metadata associated with Samples and Observations is the most interesting 
     
 
 
-    <!-- http://www.biom-format.org/resource/BIOM_000021 -->
+    <!-- http://purl.oclc.org/BIOMO/resource/BIOMO_000021 -->
 
-    <owl:ObjectProperty rdf:about="&resource;BIOM_000021">
+    <owl:ObjectProperty rdf:about="&resource;BIOMO_000021">
         <rdfs:label xml:lang="en">observation</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
-        <rdfs:domain rdf:resource="&resource;BIOM_000004"/>
-        <rdfs:subPropertyOf rdf:resource="&resource;BIOM_000023"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.oclc.org/BIOMO/ontology/biomo.owl"/>
+        <rdfs:domain rdf:resource="&resource;BIOMO_000004"/>
+        <rdfs:subPropertyOf rdf:resource="&resource;BIOMO_000023"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://www.biom-format.org/resource/BIOM_000022 -->
+    <!-- http://purl.oclc.org/BIOMO/resource/BIOMO_000022 -->
 
-    <owl:ObjectProperty rdf:about="&resource;BIOM_000022">
+    <owl:ObjectProperty rdf:about="&resource;BIOMO_000022">
         <rdfs:label xml:lang="en">sample</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
-        <rdfs:domain rdf:resource="&resource;BIOM_000004"/>
-        <rdfs:subPropertyOf rdf:resource="&resource;BIOM_000023"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.oclc.org/BIOMO/ontology/biomo.owl"/>
+        <rdfs:domain rdf:resource="&resource;BIOMO_000004"/>
+        <rdfs:subPropertyOf rdf:resource="&resource;BIOMO_000023"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://www.biom-format.org/resource/BIOM_000023 -->
+    <!-- http://purl.oclc.org/BIOMO/resource/BIOMO_000023 -->
 
-    <owl:ObjectProperty rdf:about="&resource;BIOM_000023">
+    <owl:ObjectProperty rdf:about="&resource;BIOMO_000023">
         <rdfs:label xml:lang="en">dimension</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
-        <rdfs:domain rdf:resource="&resource;BIOM_000004"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.oclc.org/BIOMO/ontology/biomo.owl"/>
+        <rdfs:domain rdf:resource="&resource;BIOMO_000004"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://www.biom-format.org/resource/BIOM_000024 -->
+    <!-- http://purl.oclc.org/BIOMO/resource/BIOMO_000024 -->
 
-    <owl:ObjectProperty rdf:about="&resource;BIOM_000024">
+    <owl:ObjectProperty rdf:about="&resource;BIOMO_000024">
         <rdfs:label xml:lang="en">refers_to_dimension</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.oclc.org/BIOMO/ontology/biomo.owl"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://www.biom-format.org/resource/BIOM_000025 -->
+    <!-- http://purl.oclc.org/BIOMO/resource/BIOMO_000025 -->
 
-    <owl:ObjectProperty rdf:about="&resource;BIOM_000025">
+    <owl:ObjectProperty rdf:about="&resource;BIOMO_000025">
         <rdfs:label xml:lang="en">refers_to_observation</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
-        <rdfs:subPropertyOf rdf:resource="&resource;BIOM_000024"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.oclc.org/BIOMO/ontology/biomo.owl"/>
+        <rdfs:subPropertyOf rdf:resource="&resource;BIOMO_000024"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://www.biom-format.org/resource/BIOM_000026 -->
+    <!-- http://purl.oclc.org/BIOMO/resource/BIOMO_000026 -->
 
-    <owl:ObjectProperty rdf:about="&resource;BIOM_000026">
+    <owl:ObjectProperty rdf:about="&resource;BIOMO_000026">
         <rdfs:label xml:lang="en">refers_to_sample</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
-        <rdfs:subPropertyOf rdf:resource="&resource;BIOM_000024"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.oclc.org/BIOMO/ontology/biomo.owl"/>
+        <rdfs:subPropertyOf rdf:resource="&resource;BIOMO_000024"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://www.biom-format.org/resource/BIOM_000047 -->
+    <!-- http://purl.oclc.org/BIOMO/resource/BIOMO_000047 -->
 
-    <owl:ObjectProperty rdf:about="&resource;BIOM_000047">
+    <owl:ObjectProperty rdf:about="&resource;BIOMO_000047">
         <rdfs:label xml:lang="en">taxon</rdfs:label>
         <rdfs:comment xml:lang="en">Added only as an example of how to model metadata</rdfs:comment>
     </owl:ObjectProperty>
@@ -187,72 +187,72 @@ Since metadata associated with Samples and Observations is the most interesting 
     
 
 
-    <!-- http://www.biom-format.org/resource/BIOM_000016 -->
+    <!-- http://purl.oclc.org/BIOMO/resource/BIOMO_000016 -->
 
-    <owl:DatatypeProperty rdf:about="&resource;BIOM_000016">
+    <owl:DatatypeProperty rdf:about="&resource;BIOMO_000016">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label xml:lang="en">creation-date</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
-        <rdfs:domain rdf:resource="&resource;BIOM_000004"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.oclc.org/BIOMO/ontology/biomo.owl"/>
+        <rdfs:domain rdf:resource="&resource;BIOMO_000004"/>
         <rdfs:range rdf:resource="&xsd;dateTime"/>
     </owl:DatatypeProperty>
     
 
 
-    <!-- http://www.biom-format.org/resource/BIOM_000017 -->
+    <!-- http://purl.oclc.org/BIOMO/resource/BIOMO_000017 -->
 
-    <owl:DatatypeProperty rdf:about="&resource;BIOM_000017">
+    <owl:DatatypeProperty rdf:about="&resource;BIOMO_000017">
         <rdfs:label xml:lang="en">generated-by</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
-        <rdfs:domain rdf:resource="&resource;BIOM_000004"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.oclc.org/BIOMO/ontology/biomo.owl"/>
+        <rdfs:domain rdf:resource="&resource;BIOMO_000004"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
 
 
-    <!-- http://www.biom-format.org/resource/BIOM_000018 -->
+    <!-- http://purl.oclc.org/BIOMO/resource/BIOMO_000018 -->
 
-    <owl:DatatypeProperty rdf:about="&resource;BIOM_000018">
+    <owl:DatatypeProperty rdf:about="&resource;BIOMO_000018">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label xml:lang="en">number of non-zero elements</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
-        <rdfs:domain rdf:resource="&resource;BIOM_000004"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.oclc.org/BIOMO/ontology/biomo.owl"/>
+        <rdfs:domain rdf:resource="&resource;BIOMO_000004"/>
         <rdfs:range rdf:resource="&xsd;nonNegativeInteger"/>
     </owl:DatatypeProperty>
     
 
 
-    <!-- http://www.biom-format.org/resource/BIOM_000019 -->
+    <!-- http://purl.oclc.org/BIOMO/resource/BIOMO_000019 -->
 
-    <owl:DatatypeProperty rdf:about="&resource;BIOM_000019">
+    <owl:DatatypeProperty rdf:about="&resource;BIOMO_000019">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label xml:lang="en">number of Observations (Rows)</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
-        <rdfs:domain rdf:resource="&resource;BIOM_000004"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.oclc.org/BIOMO/ontology/biomo.owl"/>
+        <rdfs:domain rdf:resource="&resource;BIOMO_000004"/>
         <rdfs:range rdf:resource="&xsd;nonNegativeInteger"/>
     </owl:DatatypeProperty>
     
 
 
-    <!-- http://www.biom-format.org/resource/BIOM_000020 -->
+    <!-- http://purl.oclc.org/BIOMO/resource/BIOMO_000020 -->
 
-    <owl:DatatypeProperty rdf:about="&resource;BIOM_000020">
+    <owl:DatatypeProperty rdf:about="&resource;BIOMO_000020">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label xml:lang="en">number of Samples (Columns)</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
-        <rdfs:domain rdf:resource="&resource;BIOM_000004"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.oclc.org/BIOMO/ontology/biomo.owl"/>
+        <rdfs:domain rdf:resource="&resource;BIOMO_000004"/>
         <rdfs:range rdf:resource="&xsd;nonNegativeInteger"/>
     </owl:DatatypeProperty>
     
 
 
-    <!-- http://www.biom-format.org/resource/BIOM_000027 -->
+    <!-- http://purl.oclc.org/BIOMO/resource/BIOMO_000027 -->
 
-    <owl:DatatypeProperty rdf:about="&resource;BIOM_000027">
+    <owl:DatatypeProperty rdf:about="&resource;BIOMO_000027">
         <rdfs:label xml:lang="en">numerical value</rdfs:label>
         <rdfs:comment xml:lang="en">the actual BIOM matrix data</rdfs:comment>
         <rdfs:subPropertyOf rdf:resource="&resource2;SIO_000300"/>
-        <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.oclc.org/BIOMO/ontology/biomo.owl"/>
         <rdfs:range rdf:resource="&xsd;double"/>
     </owl:DatatypeProperty>
     
@@ -287,96 +287,96 @@ Since metadata associated with Samples and Observations is the most interesting 
     
 
 
-    <!-- http://www.biom-format.org/resource/BIOM_000004 -->
+    <!-- http://purl.oclc.org/BIOMO/resource/BIOMO_000004 -->
 
-    <owl:Class rdf:about="&resource;BIOM_000004">
+    <owl:Class rdf:about="&resource;BIOMO_000004">
         <rdfs:label xml:lang="en">BIOMTable</rdfs:label>
         <owl:equivalentClass>
             <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="&resource;BIOM_000005"/>
-                    <rdf:Description rdf:about="&resource;BIOM_000006"/>
-                    <rdf:Description rdf:about="&resource;BIOM_000007"/>
-                    <rdf:Description rdf:about="&resource;BIOM_000008"/>
-                    <rdf:Description rdf:about="&resource;BIOM_000009"/>
-                    <rdf:Description rdf:about="&resource;BIOM_000010"/>
-                    <rdf:Description rdf:about="&resource;BIOM_000011"/>
+                    <rdf:Description rdf:about="&resource;BIOMO_000005"/>
+                    <rdf:Description rdf:about="&resource;BIOMO_000006"/>
+                    <rdf:Description rdf:about="&resource;BIOMO_000007"/>
+                    <rdf:Description rdf:about="&resource;BIOMO_000008"/>
+                    <rdf:Description rdf:about="&resource;BIOMO_000009"/>
+                    <rdf:Description rdf:about="&resource;BIOMO_000010"/>
+                    <rdf:Description rdf:about="&resource;BIOMO_000011"/>
                 </owl:unionOf>
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&resource;BIOM_000017"/>
+                <owl:onProperty rdf:resource="&resource;BIOMO_000017"/>
                 <owl:someValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&resource;BIOM_000019"/>
+                <owl:onProperty rdf:resource="&resource;BIOMO_000019"/>
                 <owl:someValuesFrom rdf:resource="&xsd;nonNegativeInteger"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&resource;BIOM_000020"/>
+                <owl:onProperty rdf:resource="&resource;BIOMO_000020"/>
                 <owl:someValuesFrom rdf:resource="&xsd;nonNegativeInteger"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&resource;BIOM_000018"/>
+                <owl:onProperty rdf:resource="&resource;BIOMO_000018"/>
                 <owl:someValuesFrom rdf:resource="&xsd;nonNegativeInteger"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&resource;BIOM_000016"/>
+                <owl:onProperty rdf:resource="&resource;BIOMO_000016"/>
                 <owl:someValuesFrom rdf:resource="&xsd;dateTime"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment xml:lang="en">A BIOM table is an instance of any of the subclasses of this class. A BIOM table instance maps to an HDF5 file</rdfs:comment>
-        <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.oclc.org/BIOMO/ontology/biomo.owl"/>
     </owl:Class>
     
 
 
-    <!-- http://www.biom-format.org/resource/BIOM_000005 -->
+    <!-- http://purl.oclc.org/BIOMO/resource/BIOMO_000005 -->
 
-    <owl:Class rdf:about="&resource;BIOM_000005">
+    <owl:Class rdf:about="&resource;BIOMO_000005">
         <rdfs:label xml:lang="en">FunctionTable</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&resource;BIOM_000004"/>
+        <rdfs:subClassOf rdf:resource="&resource;BIOMO_000004"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&resource2;SIO_000332"/>
                 <owl:someValuesFrom rdf:resource="&resource2;SIO_000017"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.oclc.org/BIOMO/ontology/biomo.owl"/>
     </owl:Class>
     
 
 
-    <!-- http://www.biom-format.org/resource/BIOM_000006 -->
+    <!-- http://purl.oclc.org/BIOMO/resource/BIOMO_000006 -->
 
-    <owl:Class rdf:about="&resource;BIOM_000006">
+    <owl:Class rdf:about="&resource;BIOMO_000006">
         <rdfs:label xml:lang="en">GeneTable</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&resource;BIOM_000004"/>
+        <rdfs:subClassOf rdf:resource="&resource;BIOMO_000004"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&resource2;SIO_000332"/>
                 <owl:someValuesFrom rdf:resource="&resource2;SIO_010035"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.oclc.org/BIOMO/ontology/biomo.owl"/>
     </owl:Class>
     
 
 
-    <!-- http://www.biom-format.org/resource/BIOM_000007 -->
+    <!-- http://purl.oclc.org/BIOMO/resource/BIOMO_000007 -->
 
-    <owl:Class rdf:about="&resource;BIOM_000007">
+    <owl:Class rdf:about="&resource;BIOMO_000007">
         <rdfs:label xml:lang="en">MetaboliteTable</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&resource;BIOM_000004"/>
+        <rdfs:subClassOf rdf:resource="&resource;BIOMO_000004"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&resource2;SIO_000332"/>
@@ -388,16 +388,16 @@ Since metadata associated with Samples and Observations is the most interesting 
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.oclc.org/BIOMO/ontology/biomo.owl"/>
     </owl:Class>
     
 
 
-    <!-- http://www.biom-format.org/resource/BIOM_000008 -->
+    <!-- http://purl.oclc.org/BIOMO/resource/BIOMO_000008 -->
 
-    <owl:Class rdf:about="&resource;BIOM_000008">
+    <owl:Class rdf:about="&resource;BIOMO_000008">
         <rdfs:label xml:lang="en">OrthologTable</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&resource;BIOM_000004"/>
+        <rdfs:subClassOf rdf:resource="&resource;BIOMO_000004"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&resource2;SIO_000332"/>
@@ -414,62 +414,62 @@ Since metadata associated with Samples and Observations is the most interesting 
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.oclc.org/BIOMO/ontology/biomo.owl"/>
     </owl:Class>
     
 
 
-    <!-- http://www.biom-format.org/resource/BIOM_000009 -->
+    <!-- http://purl.oclc.org/BIOMO/resource/BIOMO_000009 -->
 
-    <owl:Class rdf:about="&resource;BIOM_000009">
+    <owl:Class rdf:about="&resource;BIOMO_000009">
         <rdfs:label xml:lang="en">OTUtable</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&resource;BIOM_000004"/>
+        <rdfs:subClassOf rdf:resource="&resource;BIOMO_000004"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&resource2;SIO_000332"/>
-                <owl:someValuesFrom rdf:resource="&resource;BIOM_000013"/>
+                <owl:someValuesFrom rdf:resource="&resource;BIOMO_000013"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.oclc.org/BIOMO/ontology/biomo.owl"/>
     </owl:Class>
     
 
 
-    <!-- http://www.biom-format.org/resource/BIOM_000010 -->
+    <!-- http://purl.oclc.org/BIOMO/resource/BIOMO_000010 -->
 
-    <owl:Class rdf:about="&resource;BIOM_000010">
+    <owl:Class rdf:about="&resource;BIOMO_000010">
         <rdfs:label xml:lang="en">PathwayTable</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&resource;BIOM_000004"/>
+        <rdfs:subClassOf rdf:resource="&resource;BIOMO_000004"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&resource2;SIO_000332"/>
                 <owl:someValuesFrom rdf:resource="&resource2;SIO_001107"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.oclc.org/BIOMO/ontology/biomo.owl"/>
     </owl:Class>
     
 
 
-    <!-- http://www.biom-format.org/resource/BIOM_000011 -->
+    <!-- http://purl.oclc.org/BIOMO/resource/BIOMO_000011 -->
 
-    <owl:Class rdf:about="&resource;BIOM_000011">
+    <owl:Class rdf:about="&resource;BIOMO_000011">
         <rdfs:label xml:lang="en">TaxonTable</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&resource;BIOM_000004"/>
+        <rdfs:subClassOf rdf:resource="&resource;BIOMO_000004"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&resource2;SIO_000332"/>
                 <owl:someValuesFrom rdf:resource="http://purl.uniprot.org/core/Taxon"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:isDefinedBy rdf:resource="http://www.biom-format.org/ontology/biom.owl"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.oclc.org/BIOMO/ontology/biomo.owl"/>
     </owl:Class>
     
 
 
-    <!-- http://www.biom-format.org/resource/BIOM_000013 -->
+    <!-- http://purl.oclc.org/BIOMO/resource/BIOMO_000013 -->
 
-    <owl:Class rdf:about="&resource;BIOM_000013">
+    <owl:Class rdf:about="&resource;BIOMO_000013">
         <rdfs:label xml:lang="en">OTU</rdfs:label>
         <rdfs:label xml:lang="en">Operational Taxonomic Unit</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDAO_0000138"/>
@@ -477,9 +477,9 @@ Since metadata associated with Samples and Observations is the most interesting 
     
 
 
-    <!-- http://www.biom-format.org/resource/BIOM_000056 -->
+    <!-- http://purl.oclc.org/BIOMO/resource/BIOMO_000056 -->
 
-    <owl:Class rdf:about="&resource;BIOM_000056">
+    <owl:Class rdf:about="&resource;BIOMO_000056">
         <rdfs:label xml:lang="en">BIOMTable Metadata Entity Mapping</rdfs:label>
         <rdfs:comment xml:lang="en">Any individual of this class will be regarded by the BIOM2RDF parser as a mapping of an entity of the metadata to a Linked Data URI.
 
@@ -499,13 +499,13 @@ For example, the JSON metadata entities &quot;Description&quot;: &quot;Human gut
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&resource;BIOM_000005"/>
-            <rdf:Description rdf:about="&resource;BIOM_000006"/>
-            <rdf:Description rdf:about="&resource;BIOM_000007"/>
-            <rdf:Description rdf:about="&resource;BIOM_000008"/>
-            <rdf:Description rdf:about="&resource;BIOM_000009"/>
-            <rdf:Description rdf:about="&resource;BIOM_000010"/>
-            <rdf:Description rdf:about="&resource;BIOM_000011"/>
+            <rdf:Description rdf:about="&resource;BIOMO_000005"/>
+            <rdf:Description rdf:about="&resource;BIOMO_000006"/>
+            <rdf:Description rdf:about="&resource;BIOMO_000007"/>
+            <rdf:Description rdf:about="&resource;BIOMO_000008"/>
+            <rdf:Description rdf:about="&resource;BIOMO_000009"/>
+            <rdf:Description rdf:about="&resource;BIOMO_000010"/>
+            <rdf:Description rdf:about="&resource;BIOMO_000011"/>
         </owl:members>
     </rdf:Description>
 </rdf:RDF>

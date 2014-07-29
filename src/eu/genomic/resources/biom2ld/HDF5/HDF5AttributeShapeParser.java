@@ -23,7 +23,7 @@ import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 
 import ncsa.hdf.object.Attribute;
 import ncsa.hdf.object.HObject;
-import eu.genomic.resources.biom2ld.Storage.BIOM_URI;
+import eu.genomic.resources.biom2ld.Storage.BIOMO_URI;
 import eu.genomic.resources.biom2ld.Storage.JenaOnMemoryStore;
 import eu.genomic.resources.biom2ld.Storage.Store;
 
@@ -62,10 +62,10 @@ public class HDF5AttributeShapeParser extends HDF5HObjectParser {
 //			System.out.println(rows+ " -- " +columns);
 			((JenaOnMemoryStore) store).addLiteral(
 					((JenaOnMemoryStore) store).get_BIOM_table_instance_URI(),
-					BIOM_URI.NumberOfObservations.getURI(), rows.toString(), XSDDatatype.XSDnonNegativeInteger);
+					BIOMO_URI.NumberOfObservations.getURI(), rows.toString(), XSDDatatype.XSDnonNegativeInteger);
 			((JenaOnMemoryStore) store).addLiteral(
 					((JenaOnMemoryStore) store).get_BIOM_table_instance_URI(),
-					BIOM_URI.NumberOfSamples.getURI(), columns.toString(), XSDDatatype.XSDnonNegativeInteger);
+					BIOMO_URI.NumberOfSamples.getURI(), columns.toString(), XSDDatatype.XSDnonNegativeInteger);
 		}
 	}
 }

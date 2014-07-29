@@ -23,7 +23,7 @@ import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 
 import ncsa.hdf.object.Attribute;
 import ncsa.hdf.object.HObject;
-import eu.genomic.resources.biom2ld.Storage.BIOM_URI;
+import eu.genomic.resources.biom2ld.Storage.BIOMO_URI;
 import eu.genomic.resources.biom2ld.Storage.JenaOnMemoryStore;
 import eu.genomic.resources.biom2ld.Storage.Store;
 
@@ -60,7 +60,7 @@ public class HDF5AttributeGeneratedByParser extends HDF5HObjectParser {
 			String generated_by_value = ((String[]) attr.getValue())[0];
 			((JenaOnMemoryStore) store).addLiteral(
 					((JenaOnMemoryStore) store).get_BIOM_table_instance_URI(),
-					BIOM_URI.GeneratedBy.getURI(), generated_by_value,XSDDatatype.XSDstring);
+					BIOMO_URI.GeneratedBy.getURI(), generated_by_value,XSDDatatype.XSDstring);
 		}
 	}
 }
